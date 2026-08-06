@@ -5,12 +5,15 @@ import { supabase } from '../lib/supabase'
 import UserMenu from '../components/UserMenu'
 import UserAvatar from '../components/UserAvatar'
 import { CONFIG } from '../lib/config'
+import { compressImage } from '../lib/imageCompressor'
 
 export default function AccountPage() {
-  const { user, profile, loading } = useAuth()
+  const { user, profile, loading, refreshProfile } = useAuth()
   const [orders, setOrders] = useState([])
   const [fetching, setFetching] = useState(true)
   const [activeTab, setActiveTab] = useState('profile')
+  const [uploadingAvatar, setUploadingAvatar] = useState(false)
+  const [avatarError, setAvatarError] = useState('')
 
   const [shipping, setShipping] = useState({
     street: '',
@@ -80,6 +83,46 @@ export default function AccountPage() {
     }
   }
 
+  const handleAvatarUpload = async (e) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (!file.type.startsWith('image/')) {
+      setAvatarError('Please select an image file.')
+      return
+    }
+
+    setAvatarError('')
+    setUploadingAvatar(true)
+    try {
+      // Compress avatar client-side (max 400x400, quality 0.85)
+      const compressedFile = await compressImage(file, 400, 400, 0.85)
+      const fileExt = compressedFile.name.split('.').pop()
+      const filePath = `${user.id}/avatar.${fileExt}`
+
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(filePath, compressedFile, { upsert: true })
+
+      if (uploadError) throw uploadError
+
+      const { data: publicData } = supabase.storage
+        .from('avatars')
+        .getPublicUrl(filePath)
+
+      const publicUrl = publicData?.publicUrl + '?t=' + Date.now()
+
+      await supabase.auth.updateUser({ data: { avatar_url: publicUrl } })
+      await supabase.from('profiles').update({ avatar_url: publicUrl }).eq('id', user.id)
+      
+      if (refreshProfile) await refreshProfile()
+    } catch (err) {
+      setAvatarError('Upload failed: ' + err.message)
+      console.error(err)
+    } finally {
+      setUploadingAvatar(false)
+    }
+  }
+
   if (loading) {
     return (
       <div style={{
@@ -145,10 +188,28 @@ export default function AccountPage() {
         <div className="std-account-container">
           
           <aside className="std-account-sidebar">
-            <div className="std-sidebar-avatar">
-              <UserAvatar user={user} size={100} />
-              <h3>{user.user_metadata?.full_name || 'Customer'}</h3>
-            </div>
+             <div className="std-sidebar-avatar" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+               <div style={{ position: 'relative', display: 'inline-block' }}>
+                 <UserAvatar user={user} size={100} />
+                 <label htmlFor="customer-avatar-upload" style={{
+                   position: 'absolute', bottom: 0, right: 0,
+                   width: '32px', height: '32px', borderRadius: '50%',
+                   background: 'var(--brand-primary, #0f0d0a)', color: '#ffffff',
+                   display: 'flex', alignItems: 'center', justifyContent: 'center',
+                   cursor: 'pointer', border: '2px solid #ffffff', boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                   transition: 'all 0.2s', pointerEvents: 'auto'
+                 }}>
+                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                     <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                     <circle cx="12" cy="13" r="4"/>
+                   </svg>
+                   <input id="customer-avatar-upload" type="file" accept="image/*" style={{ display: 'none' }} onChange={handleAvatarUpload} disabled={uploadingAvatar} />
+                 </label>
+               </div>
+               {uploadingAvatar && <p style={{ fontSize: '11px', color: '#64748b', margin: '6px 0 0' }}>Uploading...</p>}
+               {avatarError && <p style={{ fontSize: '11px', color: '#ef4444', margin: '6px 0 0', fontWeight: 600 }}>{avatarError}</p>}
+               <h3 style={{ marginTop: '12px' }}>{user.user_metadata?.full_name || 'Customer'}</h3>
+             </div>
             <nav className="std-sidebar-nav">
               <button className={activeTab === 'profile' ? 'active' : ''} onClick={() => setActiveTab('profile')}>Profile & Shipping</button>
               <button className={activeTab === 'billing' ? 'active' : ''} onClick={() => setActiveTab('billing')}>{CONFIG.ENABLE_DIGITAL_PRODUCTS ? 'Payment History' : 'Orders & Shipments'}</button>

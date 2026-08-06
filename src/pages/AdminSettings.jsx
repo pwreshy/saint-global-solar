@@ -122,14 +122,17 @@ export default function AdminSettings() {
     setMessage('')
 
     try {
-      // 1. Try uploading to Supabase Storage in 'avatars' bucket first
-      const fileExt = file.name.split('.').pop()
+      // Compress avatar client-side (max 400x400 resolution, quality 0.85)
+      const compressedFile = await compressImage(file, 400, 400, 0.85)
+
+      const fileExt = compressedFile.name.split('.').pop()
       const fileName = `${user.id}-${Math.random().toString(36).substring(2)}.${fileExt}`
       const filePath = `${fileName}`
 
+      // 1. Try uploading to Supabase Storage in 'avatars' bucket first
       const { data, error: uploadError } = await supabase.storage
         .from('avatars')
-        .upload(filePath, file, { upsert: true })
+        .upload(filePath, compressedFile, { upsert: true })
 
       if (!uploadError && data) {
         // Get public URL
@@ -141,17 +144,12 @@ export default function AdminSettings() {
       } else {
         // 2. Fallback to base64 Data URL if bucket upload is not configured or blocked
         console.warn('Storage upload failed, falling back to Base64:', uploadError?.message)
-        if (file.size > 1.5 * 1024 * 1024) {
-          setError('Please select an image smaller than 1.5MB for fast loading.')
-          setLoading(false)
-          return
-        }
         const reader = new FileReader()
         reader.onloadend = () => {
           setAvatarUrl(reader.result)
           setMessage('Avatar loaded locally. Save profile to persist.')
         }
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(compressedFile)
       }
     } catch (err) {
       console.error(err)
