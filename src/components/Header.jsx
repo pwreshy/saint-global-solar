@@ -899,28 +899,28 @@ export default function Header() {
         }
         @media (max-width: 768px) {
           .header-logo-container {
-            top: 4px !important;
-            left: 12px !important;
+            top: 6px !important;
+            left: 16px !important;
           }
           .header-logo-img {
-            height: 60px !important;
-            max-width: 170px !important;
+            height: 76px !important;
+            max-width: 210px !important;
           }
           .header-logo-spacer {
-            width: 120px !important;
+            width: 160px !important;
           }
         }
         @media (max-width: 640px) {
           .header-logo-container {
-            top: 4px !important;
-            left: 8px !important;
+            top: 6px !important;
+            left: 10px !important;
           }
           .header-logo-img {
-            height: 50px !important;
-            max-width: 130px !important;
+            height: 70px !important;
+            max-width: 190px !important;
           }
           .header-logo-spacer {
-            width: 90px !important;
+            width: 130px !important;
           }
         }
       `}} />

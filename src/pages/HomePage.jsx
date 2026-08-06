@@ -171,24 +171,6 @@ export default function HomePage() {
         `}} />
       </section>
 
-      {/* ─── CORPORATE BILLBOARD BANNER ─── */}
-      <section style={{ padding: 0, background: '#ffffff', width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px' }}>
-          <img 
-            src="/solar_homepage_banner.jpg" 
-            alt="SAINT GLOBAL SOLAR corporate showroom details and solar systems banner" 
-            style={{ 
-              width: '100%', 
-              height: 'auto', 
-              display: 'block', 
-              borderRadius: '12px',
-              boxShadow: '0 10px 30px rgba(11,15,25,0.08)',
-              margin: '32px 0 0'
-            }} 
-          />
-        </div>
-      </section>
-
       {/* ─── FEATURES HIGHLIGHTS STRIP ─── */}
       <section style={{ background: '#fffcf9', color: '#1e293b', padding: '60px 24px', width: '100%', maxWidth: '100%', borderBottom: '1px solid #fed7aa' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '24px' }} className="features-grid-new">
