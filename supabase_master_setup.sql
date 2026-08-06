@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS public.products (
   shipping_charge_per_item BOOLEAN DEFAULT FALSE,
   images         TEXT[] DEFAULT '{}',
   variations     JSONB DEFAULT '{"attributes": [], "variants": []}'::jsonb,
+  category_id    UUID REFERENCES public.categories(id) ON DELETE SET NULL,
   created_at     TIMESTAMPTZ DEFAULT NOW(),
   updated_at     TIMESTAMPTZ DEFAULT NOW()
 );

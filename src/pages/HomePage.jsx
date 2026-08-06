@@ -139,10 +139,13 @@ export default function HomePage() {
             }
             .hero-image-col {
               justify-content: center !important;
-              padding: 0 24px 60px !important;
+              padding: 0 !important;
             }
             .hero-image-col img {
-              max-width: 90% !important;
+              max-width: 100% !important;
+              width: 100% !important;
+              height: 380px !important;
+              object-fit: cover !important;
             }
             .hero-title {
               font-size: 38px !important;
@@ -156,11 +159,13 @@ export default function HomePage() {
           }
           @media (max-width: 768px) {
             .hero-image-col {
-              padding: 0 0 40px 0 !important;
+              padding: 0 !important;
             }
             .hero-image-col img {
               max-width: 100% !important;
               width: 100% !important;
+              height: 300px !important;
+              object-fit: cover !important;
             }
           }
         `}} />
