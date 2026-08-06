@@ -744,6 +744,7 @@ function AdminProducts({ featureFlags }) {
   const itemsPerPage = 8
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const [dbCategories, setDbCategories] = useState([])
+  const [duplicateModal, setDuplicateModal] = useState({ isOpen: false, product: null, count: 1 })
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -1140,15 +1141,20 @@ function AdminProducts({ featureFlags }) {
     }
   }
 
-  const handleDuplicateProduct = async (product) => {
-    const countStr = window.prompt(`How many duplicates of "${product.title}" would you like to create?`, "1")
-    if (countStr === null) return // User cancelled
-    const count = parseInt(countStr, 10)
+  const handleDuplicateProduct = (product) => {
+    setDuplicateModal({ isOpen: true, product, count: 1 })
+  }
+
+  const executeDuplicateProduct = async () => {
+    const { product, count } = duplicateModal
+    if (!product) return
     if (isNaN(count) || count <= 0) {
       alert("Please enter a valid number greater than 0.")
       return
     }
 
+    setDuplicateModal(m => ({ ...m, isOpen: false }))
+    setLoading(true)
     try {
       const newProducts = []
       for (let i = 1; i <= count; i++) {
@@ -1193,6 +1199,8 @@ function AdminProducts({ featureFlags }) {
       alert(`${count} duplicate${count > 1 ? 's' : ''} created successfully as Draft!`)
     } catch (err) {
       alert(`Duplication failed: ${err.message}`)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -2265,6 +2273,113 @@ function AdminProducts({ featureFlags }) {
               </div>
 
             </form>
+          </div>
+        </div>
+      )}
+      {/* Duplicate Product Custom Modal */}
+      {duplicateModal.isOpen && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(5, 11, 20, 0.7)', backdropFilter: 'blur(4px)',
+          zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '20px'
+        }}>
+          <div style={{
+            background: '#ffffff', borderRadius: '16px', width: '100%', maxWidth: '440px',
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            overflow: 'hidden', border: '1px solid #e2e8f0', fontFamily: 'var(--font), sans-serif'
+          }}>
+            {/* Modal Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px', borderBottom: '1px solid #f1f5f9' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: 700, margin: 0, color: 'var(--brand-primary, #0b0f19)' }}>
+                Duplicate Product
+              </h3>
+              <button
+                onClick={() => setDuplicateModal({ isOpen: false, product: null, count: 1 })}
+                style={{ background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', color: '#94a3b8', display: 'flex', alignItems: 'center', padding: 0 }}
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div style={{ padding: '24px' }}>
+              <p style={{ margin: '0 0 20px', fontSize: '14px', color: '#475569', lineHeight: 1.5 }}>
+                How many copies of <strong style={{ color: '#0f172a' }}>"{duplicateModal.product?.title}"</strong> would you like to create? Copies will be saved as <span style={{ background: '#f1f5f9', padding: '2px 6px', borderRadius: '4px', fontSize: '12px', fontWeight: 600, color: '#334155' }}>Draft</span>.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
+                <label style={{ fontSize: '13px', fontWeight: 600, color: '#475569' }}>Number of Duplicates</label>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <button
+                    type="button"
+                    onClick={() => setDuplicateModal(m => ({ ...m, count: Math.max(1, m.count - 1) }))}
+                    style={{
+                      width: '40px', height: '40px', borderRadius: '8px', border: '1px solid #cbd5e1',
+                      background: '#ffffff', color: '#1e293b', fontSize: '18px', fontWeight: 'bold',
+                      cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      transition: 'all 0.15s'
+                    }}
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    min="1"
+                    max="50"
+                    value={duplicateModal.count}
+                    onChange={e => {
+                      const val = parseInt(e.target.value, 10);
+                      setDuplicateModal(m => ({ ...m, count: isNaN(val) ? 1 : Math.max(1, val) }));
+                    }}
+                    style={{
+                      flex: 1, height: '40px', borderRadius: '8px', border: '1px solid #cbd5e1',
+                      textAlign: 'center', fontSize: '16px', fontWeight: 600, color: '#1e293b',
+                      outline: 'none', background: '#f8fafc'
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setDuplicateModal(m => ({ ...m, count: Math.min(50, m.count + 1) }))}
+                    style={{
+                      width: '40px', height: '40px', borderRadius: '8px', border: '1px solid #cbd5e1',
+                      background: '#ffffff', color: '#1e293b', fontSize: '18px', fontWeight: 'bold',
+                      cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      transition: 'all 0.15s'
+                    }}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div style={{ display: 'flex', gap: '12px', padding: '16px 24px', background: '#f8fafc', borderTop: '1px solid #f1f5f9', justifyContent: 'flex-end' }}>
+              <button
+                type="button"
+                onClick={() => setDuplicateModal({ isOpen: false, product: null, count: 1 })}
+                style={{
+                  padding: '10px 16px', borderRadius: '8px', border: '1px solid #cbd5e1',
+                  background: '#ffffff', color: '#475569', fontSize: '14px', fontWeight: 600,
+                  cursor: 'pointer', transition: 'all 0.15s'
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={executeDuplicateProduct}
+                style={{
+                  padding: '10px 20px', borderRadius: '8px', border: 'none',
+                  background: 'var(--brand-primary, #0b0f19)', color: '#ffffff',
+                  fontSize: '14px', fontWeight: 600, cursor: 'pointer',
+                  transition: 'all 0.15s', boxShadow: '0 4px 6px -1px rgba(11, 15, 25, 0.2)'
+                }}
+              >
+                Duplicate
+              </button>
+            </div>
           </div>
         </div>
       )}
