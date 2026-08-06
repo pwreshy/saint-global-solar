@@ -775,13 +775,15 @@ export default function ProductsPage() {
 
                     {/* Card Image */}
                     <Link to={`/product/${product.slug || product.id}`} style={{ display: 'block', width: '100%', aspectRatio: '1 / 1', overflow: 'hidden', background: '#f8fafc' }}>
-                      <img 
-                        src={product.cover_image || '/logo.png'} 
-                        alt={`${product.title.replace(/\s+slug$/i, '')} - Premium product from SAINT GLOBAL SOLAR`} 
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        loading="lazy"
-                        onError={e => { e.currentTarget.src = '/logo.png'; e.currentTarget.style.padding = '20px' }}
-                      />
+                      {product.cover_image && product.cover_image !== '/logo.png' && product.cover_image !== '/logo_black.png' && (
+                        <img 
+                          src={product.cover_image} 
+                          alt={`${product.title.replace(/\s+slug$/i, '')} - Premium product from SAINT GLOBAL SOLAR`} 
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          loading="lazy"
+                          onError={e => { e.currentTarget.style.display = 'none' }}
+                        />
+                      )}
                     </Link>
 
                     {/* Card Content details */}

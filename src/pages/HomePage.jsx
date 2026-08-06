@@ -467,13 +467,15 @@ export default function HomePage() {
 
                   {/* Card Image */}
                   <Link to={`/product/${prod.slug || prod.id}`} style={{ display: 'block', width: '100%', aspectRatio: '1 / 1', overflow: 'hidden', background: '#f8fafc' }}>
-                    <img
-                      src={prod.cover_image || '/logo.png'}
-                      alt={`${prod.title.replace(/\s+slug$/i, '')} - Premium luxury product from SAINT GLOBAL SOLAR`}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      loading="lazy"
-                      onError={e => { e.currentTarget.src = '/logo.png'; e.currentTarget.style.objectFit = 'contain'; e.currentTarget.style.padding = '20px' }}
-                    />
+                    {prod.cover_image && prod.cover_image !== '/logo.png' && prod.cover_image !== '/logo_black.png' && (
+                      <img
+                        src={prod.cover_image}
+                        alt={`${prod.title.replace(/\s+slug$/i, '')} - Premium luxury product from SAINT GLOBAL SOLAR`}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        loading="lazy"
+                        onError={e => { e.currentTarget.style.display = 'none' }}
+                      />
+                    )}
                   </Link>
 
                   {/* Card Content */}

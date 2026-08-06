@@ -29,7 +29,7 @@ export default function ProductDetailsPage() {
       if (!productId) return
 
       const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(productId)
-      let query = supabase.from('products').select('*')
+      let query = supabase.from('products').select('*, categories(name)')
       if (isUUID) {
         query = query.eq('id', productId)
       } else {
@@ -43,7 +43,9 @@ export default function ProductDetailsPage() {
       }
 
       setProduct(prod)
-      setActiveImage(prod.cover_image || '/logo_black.png')
+      const validCover = (prod.cover_image && prod.cover_image !== '/logo.png' && prod.cover_image !== '/logo_black.png') ? prod.cover_image : null
+      const firstUploaded = prod.images && Array.isArray(prod.images) ? prod.images.find(img => img && img !== '/logo.png' && img !== '/logo_black.png') : null
+      setActiveImage(validCover || firstUploaded || null)
 
       // SEO Dynamic title and description injection
       document.title = `${prod.title.replace(/\s+slug$/i, '')} — Buy Online | SAINT GLOBAL SOLAR Store`
@@ -226,7 +228,7 @@ export default function ProductDetailsPage() {
   const rawImages = [
     product.cover_image,
     ...(Array.isArray(product.images) ? product.images : [])
-  ].filter(Boolean)
+  ].filter(img => img && img !== '/logo.png' && img !== '/logo_black.png')
   const imagesList = rawImages.filter((img, idx) => rawImages.indexOf(img) === idx)
 
   const finalPrice = selectedVariant ? selectedVariant.price : product.price
@@ -272,12 +274,14 @@ export default function ProductDetailsPage() {
             overflow: 'hidden',
             boxShadow: '0 4px 12px rgba(0,0,0,0.01)'
           }}>
-            <img 
-              src={activeImage} 
-              alt={`${product.title.replace(/\s+slug$/i, '')} - Premium agricultural export grade product`} 
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              onError={e => { e.currentTarget.src = '/logo_black.png'; e.currentTarget.style.objectFit = 'contain'; e.currentTarget.style.padding = '40px' }}
-            />
+            {activeImage && (
+              <img 
+                src={activeImage} 
+                alt={`${product.title.replace(/\s+slug$/i, '')} - Premium product`} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                onError={e => { e.currentTarget.style.display = 'none' }}
+              />
+            )}
           </div>
 
           {/* Thumbnails Row */}
@@ -470,7 +474,7 @@ export default function ProductDetailsPage() {
           {/* Product Meta Data list */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px', color: '#64748b', borderTop: '1px solid #e2e8f0', paddingTop: '16px' }}>
             <span><strong>Weight (kg):</strong> {selectedVariant?.weight || product.weight || 'N/A'}</span>
-            <span><strong>Category:</strong> {product.meta_title || (product.type === 'physical' ? 'Exquisite Shoes' : 'Accessories')}</span>
+            <span><strong>Category:</strong> {product.categories?.name || product.meta_title || 'Uncategorized'}</span>
             <span><strong>SKU:</strong> SGS-{product.id.substring(0, 8).toUpperCase()}</span>
           </div>
 
@@ -672,13 +676,15 @@ export default function ProductDetailsPage() {
 
                   {/* Product Image — fixed height, object-fit: cover */}
                   <Link to={`/product/${prod.slug || prod.id}`} style={{ display: 'block', height: '160px', overflow: 'hidden', background: '#f8fafc' }}>
-                    <img 
-                      src={prod.cover_image || '/logo_black.png'} 
-                      alt={`${prod.title.replace(/\s+slug$/i, '')} related product`} 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      loading="lazy"
-                      onError={e => { e.currentTarget.src = '/logo_black.png'; e.currentTarget.style.objectFit = 'contain'; e.currentTarget.style.padding = '20px' }}
-                    />
+                    {prod.cover_image && prod.cover_image !== '/logo.png' && prod.cover_image !== '/logo_black.png' && (
+                      <img 
+                        src={prod.cover_image} 
+                        alt={`${prod.title.replace(/\s+slug$/i, '')} related product`} 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        loading="lazy"
+                        onError={e => { e.currentTarget.style.display = 'none' }}
+                      />
+                    )}
                   </Link>
 
                   {/* Card details */}

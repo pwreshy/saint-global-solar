@@ -955,7 +955,9 @@ function AdminProducts({ featureFlags }) {
       }
 
       const updatedImages = [...(productForm.images || []), ...uploadedUrls]
-      const cover = productForm.cover_image || uploadedUrls[0] || ''
+      const currentCover = (productForm.cover_image || '').trim()
+      const isPlaceholder = currentCover === '/logo.png' || currentCover === '/logo_black.png'
+      const cover = (!currentCover || isPlaceholder) ? (uploadedUrls[0] || '') : currentCover
       setProductForm({
         ...productForm,
         images: updatedImages,
@@ -1080,7 +1082,9 @@ function AdminProducts({ featureFlags }) {
       description: productForm.description.trim(),
       price: isFree ? 0 : (parseInt(productForm.price) || 0),
       old_price: isFree ? null : (productForm.compare_price ? parseInt(productForm.compare_price) : null),
-      cover_image: (productForm.cover_image || '').trim() || (productForm.images && productForm.images[0]) || '/logo.png',
+      cover_image: (productForm.cover_image || '').trim() && (productForm.cover_image || '').trim() !== '/logo.png' && (productForm.cover_image || '').trim() !== '/logo_black.png'
+        ? productForm.cover_image.trim()
+        : (productForm.images && productForm.images.find(img => img && img !== '/logo.png' && img !== '/logo_black.png')) || null,
       images: productForm.images || [],
       variations: isVariable 
         ? {

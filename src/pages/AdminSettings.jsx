@@ -36,6 +36,8 @@ export default function AdminSettings() {
   const [stripeSecretKey, setStripeSecretKey] = useState('')
   const [resendApiKey, setResendApiKey] = useState('')
   const [enableCod, setEnableCod] = useState(false)
+  const [enablePaystack, setEnablePaystack] = useState(true)
+  const [enableBankTransfer, setEnableBankTransfer] = useState(true)
 
   // Multi-Currency settings
   const [enableMultiCurrency, setEnableMultiCurrency] = useState(false)
@@ -85,6 +87,8 @@ export default function AdminSettings() {
             setStripeSecretKey(payConfig.value.stripe_secret_key || '')
             setResendApiKey(payConfig.value.resend_api_key || '')
             setEnableCod(!!payConfig.value.enable_cod)
+            setEnablePaystack(payConfig.value.enable_paystack !== false)
+            setEnableBankTransfer(payConfig.value.enable_bank_transfer !== false)
           }
           const currencyConfig = data.find(s => s.id === 'currency_config')
           if (currencyConfig?.value) {
@@ -218,7 +222,9 @@ export default function AdminSettings() {
             stripe_public_key: stripePublicKey.trim(),
             stripe_secret_key: stripeSecretKey.trim(),
             resend_api_key: resendApiKey.trim(),
-            enable_cod: enableCod
+            enable_cod: enableCod,
+            enable_paystack: enablePaystack,
+            enable_bank_transfer: enableBankTransfer
           },
           updated_at: new Date().toISOString()
         })
@@ -526,17 +532,41 @@ export default function AdminSettings() {
               </div>
 
               <div style={{ borderTop: '1px solid #e2e8f0', margin: '12px 0 6px 0', paddingTop: 12 }}>
-                <span style={{ fontSize: 12, fontWeight: 600, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Cash on Delivery</span>
+                <span style={{ fontSize: 12, fontWeight: 600, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Payment Method Visibility</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '8px 0 14px 0' }}>
-                <input 
-                  type="checkbox" 
-                  id="enableCod" 
-                  checked={enableCod} 
-                  onChange={e => setEnableCod(e.target.checked)} 
-                  style={{ width: 16, height: 16, cursor: 'pointer' }}
-                />
-                <label htmlFor="enableCod" style={{ fontSize: 13, fontWeight: 500, color: '#3c4257', cursor: 'pointer', userSelect: 'none' }}>Enable Cash on Delivery (COD) Payment Option</label>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, margin: '10px 0 14px 0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <input 
+                    type="checkbox" 
+                    id="enablePaystack" 
+                    checked={enablePaystack} 
+                    onChange={e => setEnablePaystack(e.target.checked)} 
+                    style={{ width: 16, height: 16, cursor: 'pointer' }}
+                  />
+                  <label htmlFor="enablePaystack" style={{ fontSize: 13, fontWeight: 500, color: '#3c4257', cursor: 'pointer', userSelect: 'none' }}>Enable Secure Paystack Gateway Option</label>
+                </div>
+                
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <input 
+                    type="checkbox" 
+                    id="enableBankTransfer" 
+                    checked={enableBankTransfer} 
+                    onChange={e => setEnableBankTransfer(e.target.checked)} 
+                    style={{ width: 16, height: 16, cursor: 'pointer' }}
+                  />
+                  <label htmlFor="enableBankTransfer" style={{ fontSize: 13, fontWeight: 500, color: '#3c4257', cursor: 'pointer', userSelect: 'none' }}>Enable Manual Bank Transfer Option</label>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <input 
+                    type="checkbox" 
+                    id="enableCod" 
+                    checked={enableCod} 
+                    onChange={e => setEnableCod(e.target.checked)} 
+                    style={{ width: 16, height: 16, cursor: 'pointer' }}
+                  />
+                  <label htmlFor="enableCod" style={{ fontSize: 13, fontWeight: 500, color: '#3c4257', cursor: 'pointer', userSelect: 'none' }}>Enable Cash on Delivery (COD) Option (Physical Only)</label>
+                </div>
               </div>
 
               <div style={{ borderTop: '1px solid #e2e8f0', margin: '12px 0 6px 0', paddingTop: 12 }}>

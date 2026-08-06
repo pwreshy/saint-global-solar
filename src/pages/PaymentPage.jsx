@@ -114,6 +114,8 @@ export default function PaymentPage() {
   // Payment method toggle & receipt states
   const [paymentMethod, setPaymentMethod] = useState('paystack')
   const [enableCod, setEnableCod] = useState(false)
+  const [enablePaystack, setEnablePaystack] = useState(true)
+  const [enableBankTransfer, setEnableBankTransfer] = useState(true)
   const [paystackPublicKey, setPaystackPublicKey] = useState(CONFIG.PAYSTACK_PUBLIC_KEY)
   const [bankAccounts, setBankAccounts] = useState([])
   const [receiptUrl, setReceiptUrl] = useState('')
@@ -198,6 +200,19 @@ export default function PaymentPage() {
         const { data } = await supabase.from('settings').select('*').eq('id', 'payment_config').maybeSingle()
         if (data?.value) {
           setEnableCod(!!data.value.enable_cod)
+          const pEnabled = data.value.enable_paystack !== false
+          const bEnabled = data.value.enable_bank_transfer !== false
+          setEnablePaystack(pEnabled)
+          setEnableBankTransfer(bEnabled)
+          
+          if (!pEnabled) {
+            if (bEnabled) {
+              setPaymentMethod('bank_transfer')
+            } else if (!!data.value.enable_cod) {
+              setPaymentMethod('cod')
+            }
+          }
+
           if (data.value.paystack_public_key) {
             setPaystackPublicKey(data.value.paystack_public_key)
           }
@@ -2241,43 +2256,46 @@ export default function PaymentPage() {
               <h3 className="sp-section-title">Payment Method</h3>
               
               {/* Paystack Option */}
-              <div className="sp-payment-container" style={{ marginBottom: 12, border: paymentMethod === 'paystack' ? '2px solid var(--brand-primary, #0f0d0a)' : '1px solid #cbd5e1', borderRadius: '10px', overflow: 'hidden' }}>
-                <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 16px', cursor: 'pointer', margin: 0, width: '100%', boxSizing: 'border-box' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <input 
-                      type="radio" 
-                      name="payment_method"
-                      checked={paymentMethod === 'paystack'} 
-                      onChange={() => setPaymentMethod('paystack')}
-                      style={{ accentColor: 'var(--brand-primary, #0f0d0a)', cursor: 'pointer', width: 18, height: 18 }} 
-                    />
-                    <span style={{ fontWeight: 600, fontSize: '14px', color: '#1e293b' }}>Secure Paystack Gateway</span>
-                  </div>
-                  <span style={{ fontSize: '11px', color: '#707070', fontWeight: 500 }}>CARDS &bull; TRANSFER &bull; USSD</span>
-                </label>
-                
-                {paymentMethod === 'paystack' && (
-                  <div className="sp-payment-body" style={{ background: '#f8fafc', padding: 16, borderTop: '1px solid #e2e8f0' }}>
-                    <p style={{ margin: 0, fontSize: '13px', color: '#475569', lineHeight: '1.5' }}>After clicking "Complete Payment", you will be redirected to the secure Paystack checkout pop-up to authorize your payment instantly using your card, bank transfer, or USSD.</p>
-                  </div>
-                )}
-              </div>
+              {enablePaystack && (
+                <div className="sp-payment-container" style={{ marginBottom: 12, border: paymentMethod === 'paystack' ? '2px solid var(--brand-primary, #0f0d0a)' : '1px solid #cbd5e1', borderRadius: '10px', overflow: 'hidden' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 16px', cursor: 'pointer', margin: 0, width: '100%', boxSizing: 'border-box' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                      <input 
+                        type="radio" 
+                        name="payment_method"
+                        checked={paymentMethod === 'paystack'} 
+                        onChange={() => setPaymentMethod('paystack')}
+                        style={{ accentColor: 'var(--brand-primary, #0f0d0a)', cursor: 'pointer', width: 18, height: 18 }} 
+                      />
+                      <span style={{ fontWeight: 600, fontSize: '14px', color: '#1e293b' }}>Secure Paystack Gateway</span>
+                    </div>
+                    <span style={{ fontSize: '11px', color: '#707070', fontWeight: 500 }}>CARDS &bull; TRANSFER &bull; USSD</span>
+                  </label>
+                  
+                  {paymentMethod === 'paystack' && (
+                    <div className="sp-payment-body" style={{ background: '#f8fafc', padding: 16, borderTop: '1px solid #e2e8f0' }}>
+                      <p style={{ margin: 0, fontSize: '13px', color: '#475569', lineHeight: '1.5' }}>After clicking "Complete Payment", you will be redirected to the secure Paystack checkout pop-up to authorize your payment instantly using your card, bank transfer, or USSD.</p>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Bank Transfer Option */}
-              <div className="sp-payment-container" style={{ border: paymentMethod === 'bank_transfer' ? '2px solid var(--brand-primary, #0f0d0a)' : '1px solid #cbd5e1', borderRadius: '10px', overflow: 'hidden' }}>
-                <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 16px', cursor: 'pointer', margin: 0, width: '100%', boxSizing: 'border-box' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <input 
-                      type="radio" 
-                      name="payment_method"
-                      checked={paymentMethod === 'bank_transfer'} 
-                      onChange={() => setPaymentMethod('bank_transfer')}
-                      style={{ accentColor: 'var(--brand-primary, #0f0d0a)', cursor: 'pointer', width: 18, height: 18 }} 
-                    />
-                    <span style={{ fontWeight: 600, fontSize: '14px', color: '#1e293b' }}>Manual Bank Transfer (Direct Upload)</span>
-                  </div>
-                  <span style={{ fontSize: '11px', color: '#707070', fontWeight: 500 }}>BANK UPLOAD &bull; MANUAL REVIEW</span>
-                </label>
+              {enableBankTransfer && (
+                <div className="sp-payment-container" style={{ border: paymentMethod === 'bank_transfer' ? '2px solid var(--brand-primary, #0f0d0a)' : '1px solid #cbd5e1', borderRadius: '10px', overflow: 'hidden', marginBottom: 12 }}>
+                  <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 16px', cursor: 'pointer', margin: 0, width: '100%', boxSizing: 'border-box' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                      <input 
+                        type="radio" 
+                        name="payment_method"
+                        checked={paymentMethod === 'bank_transfer'} 
+                        onChange={() => setPaymentMethod('bank_transfer')}
+                        style={{ accentColor: 'var(--brand-primary, #0f0d0a)', cursor: 'pointer', width: 18, height: 18 }} 
+                      />
+                      <span style={{ fontWeight: 600, fontSize: '14px', color: '#1e293b' }}>Manual Bank Transfer (Direct Upload)</span>
+                    </div>
+                    <span style={{ fontSize: '11px', color: '#707070', fontWeight: 500 }}>BANK UPLOAD &bull; MANUAL REVIEW</span>
+                  </label>
                 
                 {paymentMethod === 'bank_transfer' && (
                   <div className="sp-payment-body" style={{ background: '#f8fafc', padding: 16, borderTop: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -2348,6 +2366,7 @@ export default function PaymentPage() {
                   </div>
                 )}
               </div>
+              )}
 
               {/* Cash on Delivery Option */}
               {enableCod && isPhysical && (
