@@ -30,11 +30,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Brand (Premium Gold & Luxury Charcoal JGOLD SIGNATURES Theme) */
-  --g900: #0f0d0a; --g800: #1c1813; --g700: #332b21;
-  --g600: #5c4e3c; --g500: #af9063; --g400: #c5a880;
-  --g200: #e3d5c1; --g100: #f4eee3; --g50:  #faf8f5;
-  --gold: #dfb26c; --gold-d: #966f33; --gold-l: #fcf8f0;
+  /* Brand (Premium Solar Orange & Modern Charcoal Saint Global Solar Theme) */
+  --g900: #0b0f19; --g800: #1a202c; --g700: #2d3748;
+  --g600: #4a5568; --g500: #ea580c; --g400: #f97316;
+  --g200: #fed7aa; --g100: #ffedd5; --g50:  #fffcf8;
+  --gold: #f97316; --gold-d: #ea580c; --gold-l: #fff7ed;
   --red:  #dc2626; --red-l: #fef2f2;
   /* Neutrals */
   --w: #FFFFFF; --k: #0A0A0A;
@@ -457,8 +457,8 @@ ul, ol { list-style: none; }
 
 /* ─── APP SAAS CSS (LMS, Account, Header) ───────────────────────────────── */
 :root {
-  --brand-primary: #0f0d0a;
-  --brand-hover: #262520;
+  --brand-primary: var(--gold);
+  --brand-hover: var(--gold-d);
   --bg-app: #f8fafc;
   --bg-surface: #ffffff;
   --border-color: #e2e8f0;

@@ -106,10 +106,10 @@ export default function LoginPage() {
         
         <div className="auth-header">
           <Link to="/" className="auth-brand-logo">
-            <img src="/logo.webp" alt={localStorage.getItem('brandName') || 'JGOLD SIGNATURES'} onError={e => { e.currentTarget.style.display = 'none' }} />
+            <img src="/logo_black.png" alt={localStorage.getItem('brandName') || 'SAINT GLOBAL SOLAR'} onError={e => { e.currentTarget.style.display = 'none' }} />
           </Link>
           <h2>Welcome back</h2>
-          <p>Sign in to your {localStorage.getItem('brandName') || 'JGOLD SIGNATURES'} account to continue.</p>
+          <p>Sign in to your {localStorage.getItem('brandName') || 'SAINT GLOBAL SOLAR'} account to continue.</p>
         </div>
 
         <div className="auth-card">

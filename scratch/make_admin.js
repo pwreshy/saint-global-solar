@@ -29,7 +29,7 @@ if (!supabaseUrl || !serviceRoleKey) {
 }
 
 const supabase = createClient(supabaseUrl, serviceRoleKey);
-const targetEmail = 'admin@jgoldsignatures.com.ng';
+const targetEmail = 'admin@saintglobalsolar.com';
 
 async function makeAdmin() {
   console.log(`Setting admin role for: ${targetEmail}`);

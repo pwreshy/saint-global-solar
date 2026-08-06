@@ -856,7 +856,7 @@ export default function PaymentPage() {
       }
     }
 
-    const ref = `JGOLD_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`
+    const ref = `SGS_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`
     const affId = affiliateData?.id || null
     const affCode = affiliateData?.affiliate_code || null
 
@@ -1245,7 +1245,7 @@ export default function PaymentPage() {
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
           <div style={{ position: 'absolute', width: 160, height: 160, background: 'radial-gradient(circle, rgba(197, 168, 128,0.15) 0%, rgba(197, 168, 128,0) 70%)', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(24px)', animation: 'ambient-glow 3s ease-in-out infinite' }} />
-          <img src="/logo.png" alt={localStorage.getItem('brandName') || 'JGOLD SIGNATURES'} style={{ height: 100, width: 'auto', maxWidth: 280, objectFit: 'contain', marginBottom: 36, filter: 'drop-shadow(0 0 10px rgba(197, 168, 128,0.1))', animation: 'logo-pulse 2.2s ease-in-out infinite' }} />
+          <img src="/logo_black.png" alt={localStorage.getItem('brandName') || 'SAINT GLOBAL SOLAR'} style={{ height: 100, width: 'auto', maxWidth: 280, objectFit: 'contain', marginBottom: 36, filter: 'drop-shadow(0 0 10px rgba(197, 168, 128,0.1))', animation: 'logo-pulse 2.2s ease-in-out infinite' }} />
           <div className="premium-spinner" />
           <p style={{ color: '#64748b', marginTop: 16, fontSize: '14px', letterSpacing: '0.5px', position: 'relative', zIndex: 1 }}>Loading checkout...</p>
         </div>
@@ -1254,7 +1254,7 @@ export default function PaymentPage() {
             width: 32px;
             height: 32px;
             border: 3px solid rgba(15, 23, 42, 0.05);
-            border-top-color: #c5a880;
+            border-top-color: var(--gold);
             border-right-color: #e3d5c1;
             border-radius: 50%;
             animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
@@ -2043,7 +2043,7 @@ export default function PaymentPage() {
           {/* Logo */}
           <div className="sp-logo-wrapper">
             <Link to="/">
-              <img src="/logo.png" alt="JGOLD SIGNATURES" className="sp-logo" onError={e => { e.currentTarget.style.display = 'none' }} />
+              <img src="/logo_black.png" alt="SAINT GLOBAL SOLAR" className="sp-logo" onError={e => { e.currentTarget.style.display = 'none' }} />
             </Link>
           </div>
 

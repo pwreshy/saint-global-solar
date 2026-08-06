@@ -184,7 +184,7 @@ function PurchaseHistoryTab({ user, profile }) {
       return;
     }
 
-    const brandName = localStorage.getItem('brandName') || 'JGOLD SIGNATURES';
+    const brandName = localStorage.getItem('brandName') || 'SAINT GLOBAL SOLAR';
     const cleanBrandName = brandName.replace(/["']/g, "");
 
     const htmlContent = `
@@ -1219,7 +1219,7 @@ function AffiliateTab({ user, profile }) {
   const TIER_CONFIG = {
     bronze: { 
       label: 'Bronze', 
-      color: '#c2410c', 
+      color: '#ea580c', 
       bg: '#fef3e2', 
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ flexShrink: 0 }}>
@@ -1449,7 +1449,7 @@ function AffiliateTab({ user, profile }) {
         }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 8 }}>Tier Progress Structure</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 12px', fontSize: 12.5, color: '#64748b' }}>
-            <div>Bronze: 0+ sales → <strong style={{ color: '#c2410c' }}>20%</strong></div>
+            <div>Bronze: 0+ sales → <strong style={{ color: '#ea580c' }}>20%</strong></div>
             <div>Silver: 6+ sales → <strong style={{ color: '#475569' }}>25%</strong></div>
             <div>Gold: 21+ sales → <strong style={{ color: '#a16207' }}>30%</strong></div>
             <div>Platinum: 50+ sales → <strong style={{ color: '#6d28d9' }}>35%</strong></div>

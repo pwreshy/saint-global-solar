@@ -1,4 +1,4 @@
-# JGOLD SIGNATURES robots.txt
+# SAINT GLOBAL SOLAR robots.txt
 User-agent: *
 Allow: /
 
@@ -37,4 +37,4 @@ Disallow: /checkout
 Disallow: /payment
 Disallow: /api/
 
-Sitemap: https://jgoldsignatures.com.ng/sitemap.xml
+Sitemap: https://saintglobalsolar.com/sitemap.xml

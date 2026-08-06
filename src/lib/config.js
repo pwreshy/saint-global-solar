@@ -3,11 +3,11 @@ export const CONFIG = {
   SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL || 'https://uivlyvewbdxvbitavfva.supabase.co',
   SUPABASE_KEY: import.meta.env.VITE_SUPABASE_ANON_KEY,
   ENABLE_DIGITAL_PRODUCTS: false, // Set to true to re-enable Courses and E-Books
-  PRICE_KOBO: 1000000,           // ₦10,000 in kobo
-  PRICE_NAIRA: 10000,
-  PRICE_DISPLAY: '₦10,000',
-  ORIGINAL_PRICE: '₦50,000',
-  BOOK_TITLE: 'Premium E-Commerce Product',
-  AUTHOR: 'E-Com Store',
+  PRICE_KOBO: 25000000,           // ₦250,000 in kobo (sample Lithium Battery price)
+  PRICE_NAIRA: 250000,
+  PRICE_DISPLAY: '₦250,000',
+  ORIGINAL_PRICE: '₦350,000',
+  BOOK_TITLE: 'Premium Solar Pack',
+  AUTHOR: 'Saint Global Solar',
 }
 

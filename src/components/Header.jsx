@@ -179,7 +179,7 @@ export default function Header() {
     <>
       <header className="global-header">
         <Link to={location.pathname.startsWith('/admin') ? '/admin' : '/'} className="brand-link" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-          <img src="/logo.webp" alt={localStorage.getItem('brandName') || 'JGOLD SIGNATURES'} style={{ height: 76, width: 'auto', maxWidth: 280, objectFit: 'contain', objectPosition: 'left center', display: 'block', flexShrink: 0 }} />
+          <img src="/logo_black.png" alt={localStorage.getItem('brandName') || 'SAINT GLOBAL SOLAR'} style={{ height: 60, width: 'auto', maxWidth: 280, objectFit: 'contain', objectPosition: 'left center', display: 'block', flexShrink: 0 }} />
         </Link>
 
         <div className="header-search-wrapper" ref={dropdownRef} style={{ position: 'relative', flex: 1, maxWidth: '440px' }}>
@@ -229,7 +229,7 @@ export default function Header() {
                       src={product.cover_image} 
                       alt={product.title} 
                       className="search-item-thumb" 
-                      onError={e => { e.currentTarget.src = '/logo.webp' }}
+                      onError={e => { e.currentTarget.src = '/logo_black.png' }}
                     />
                     <div className="search-item-info">
                       <div className="search-item-title">{product.title}</div>
@@ -550,7 +550,7 @@ export default function Header() {
                       src={item.cover_image} 
                       alt={item.title} 
                       className="cart-item-thumb"
-                      onError={e => { e.currentTarget.src = '/logo.png' }}
+                      onError={e => { e.currentTarget.src = '/logo_black.png' }}
                     />
                     <div className="cart-item-details">
                       <h4 className="cart-item-title">{item.title.replace(/\s+slug$/i, '')}</h4>

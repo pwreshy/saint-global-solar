@@ -61,15 +61,17 @@ export default function AdminSettings() {
       setBio(profile.bio || '')
       setAvatarUrl(profile.avatar_url || '')
     }
+  }, [profile])
 
+  useEffect(() => {
     async function loadPlatformSettings() {
       try {
         const { data } = await supabase.from('settings').select('*')
         if (data) {
           const siteConfig = data.find(s => s.id === 'site_config')
           if (siteConfig?.value) {
-            setBrandName(siteConfig.value.platform_name || 'Amplified Skills')
-            setSupportEmail(siteConfig.value.support_email || 'support@amplifiedskills.com')
+            setBrandName(siteConfig.value.platform_name || 'SAINT GLOBAL SOLAR')
+            setSupportEmail(siteConfig.value.support_email || 'support@saintglobalsolar.com')
             setEnableAcademics(siteConfig.value.enable_academics ?? false)
             setEnableAffiliates(siteConfig.value.enable_affiliates ?? true)
             setEnablePayouts(siteConfig.value.enable_payouts ?? true)
@@ -105,7 +107,7 @@ export default function AdminSettings() {
       }
     }
     loadPlatformSettings()
-  }, [profile])
+  }, [])
 
   const handleAvatarChange = async (e) => {
     const file = e.target.files?.[0]
@@ -703,7 +705,7 @@ export default function AdminSettings() {
                       type="text" 
                       value={newAccName} 
                       onChange={e => setNewAccName(e.target.value)} 
-                      placeholder="e.g. JGOLD SIGNATURES"
+                      placeholder="e.g. SAINT GLOBAL SOLAR"
                       style={{ width: '100%', padding: '8px 12px', borderRadius: 6, border: '1px solid #cbd5e1', fontSize: 13, outline: 'none' }}
                     />
                   </div>

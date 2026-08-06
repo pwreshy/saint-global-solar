@@ -1,5 +1,5 @@
 -- ============================================================================
--- JGOLD SIGNATURES - LANDING PAGES COPY COLUMNS ADDITION
+-- SAINT GLOBAL SOLAR - LANDING PAGES COPY COLUMNS ADDITION
 -- ============================================================================
 -- Copy and run this script inside your Supabase Dashboard SQL Editor
 -- (https://supabase.com/dashboard/project/figbzrnlgyrjkzxjwctj/sql/new)

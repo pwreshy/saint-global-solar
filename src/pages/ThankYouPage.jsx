@@ -264,7 +264,7 @@ export default function ThankYouPage() {
               )}
               <div style={{ flex: 1, minWidth: 0 }}>
                 <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#0f172a', margin: '0 0 4px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {customer?.product_title || 'JGOLD Product'}
+                  {customer?.product_title || 'Solar Product'}
                 </h4>
                 <p style={{ fontSize: '13px', color: '#64748b', margin: 0, textTransform: 'capitalize' }}>
                   Type: {customer?.product_type || 'Product'}

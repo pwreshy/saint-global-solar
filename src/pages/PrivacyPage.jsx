@@ -8,14 +8,14 @@ export default function PrivacyPage() {
       {/* Page Hero Header */}
       <section style={{ background: 'linear-gradient(135deg, #0f0d0a 0%, #1c1813 100%)', color: '#ffffff', padding: '80px 24px', textAlign: 'center' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <span style={{ fontSize: '12px', fontWeight: '800', color: '#c5a880', textTransform: 'uppercase', letterSpacing: '2px' }}>
+          <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '2px' }}>
             Data Protection
           </span>
           <h1 style={{ fontSize: '40px', fontWeight: 800, margin: 0, fontFamily: 'var(--font-heading)' }}>
             Privacy Policy
           </h1>
           <p style={{ fontSize: '16px', color: '#f4eee3', lineHeight: '1.6', margin: 0 }}>
-            How we collect, secure, and handle buyer account credentials, shipping details, and transaction data at JGOLD SIGNATURES.
+            How we collect, secure, and handle buyer account credentials, shipping details, and transaction data at SAINT GLOBAL SOLAR.
           </p>
         </div>
       </section>
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
           boxShadow: '0 4px 12px rgba(15, 23, 42, 0.03)'
         }} className="policy-card">
           <p style={{ fontSize: '16px', lineHeight: '1.75', color: '#475569', marginTop: 0, marginBottom: '32px' }}>
-            At <strong>JGOLD SIGNATURES</strong>, we value the trust of our clients and website users. This Privacy Policy details our commitment to securing information collected through our retail checkout, order panels, and styling query forms.
+            At <strong>SAINT GLOBAL SOLAR</strong>, we value the trust of our clients and website users. This Privacy Policy details our commitment to securing information collected through our solar sales panels, quotes, and project forms.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
             <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '24px' }}>
               <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#0f0d0a', margin: '0 0 12px' }}>3. Secure Payments Gateways</h2>
               <p style={{ fontSize: '15px', lineHeight: '1.7', color: '#475569', margin: 0 }}>
-                Local credit card and instant bank payments are processed securely by <strong>Paystack Gateway</strong>. JGOLD SIGNATURES does not store or process card numbers, bank PINs, or routing codes on our servers. Direct bank transfer receipts uploaded during manual checkout are stored in secure, private folders on Supabase Storage.
+                Local credit card and instant bank payments are processed securely by <strong>Paystack Gateway</strong>. SAINT GLOBAL SOLAR does not store or process card numbers, bank PINs, or routing codes on our servers. Direct bank transfer receipts uploaded during manual checkout are stored in secure, private folders on Supabase Storage.
               </p>
             </div>
 

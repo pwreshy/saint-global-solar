@@ -6,7 +6,7 @@ import { supabase } from '../lib/supabase'
 // ─────────────────────────────────────────────────────────────────────────────
 
 const TIER_COLORS = {
-  bronze:   { bg: '#fef3e2', text: '#c2410c', border: '#fed7aa' },
+  bronze:   { bg: '#fef3e2', text: '#ea580c', border: '#fed7aa' },
   silver:   { bg: '#f1f5f9', text: '#475569', border: '#cbd5e1' },
   gold:     { bg: '#fefce8', text: '#a16207', border: '#fde68a' },
   platinum: { bg: '#f5f3ff', text: '#6d28d9', border: '#ddd6fe' },

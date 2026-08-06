@@ -34,7 +34,7 @@ import AffiliatePage from './pages/AffiliatePage'
 import QualityPage from './pages/QualityPage'
 import ExportPage from './pages/ExportPage'
 import GalleryPage from './pages/GalleryPage'
-import WhatsAppWidget from './components/WhatsAppWidget'
+import ContactWidgets from './components/ContactWidgets'
 import { supabase } from './lib/supabase'
 
 import { useState, useEffect } from 'react'
@@ -56,56 +56,56 @@ function ScrollToTop() {
 
 const ROUTE_SEO = {
   '/': {
-    title: 'JGOLD SIGNATURES — Premium Men\'s Luxury Shoes & Accessories',
-    description: 'Welcome to JGOLD SIGNATURES, where luxury meets style. Browse our curated collection of exquisite handcrafted men\'s shoes and elegant clothing accessories.'
+    title: 'SAINT GLOBAL SOLAR — Premium Solar Panels & Lithium Batteries Kano',
+    description: 'Durability Is Our Goal. SAINT GLOBAL SOLAR sells high-quality Lithium-ion batteries, solar panels, rechargeable fans, LED bulbs, water pumps, control inverters, and offers expert contractor services in Kano, Nigeria.'
   },
   '/about': {
-    title: 'About Us — JGOLD SIGNATURES Luxury Brand',
-    description: 'Learn about JGOLD SIGNATURES, our commitment to master craftsmanship, and how we curate premium shoes and clothing accessories for modern gentlemen.'
+    title: 'About Us — SAINT GLOBAL SOLAR',
+    description: 'Learn about SAINT GLOBAL SOLAR and our founder CEO Ikenga Okoye. Discover our dedication to engineering durability and supplying top-tier solar equipment in Kano.'
   },
   '/products': {
-    title: 'Shop Men\'s Luxury Shoes & Accessories — JGOLD SIGNATURES',
-    description: 'Browse and purchase top-quality leather shoes, dress shoes, and elegant accessories directly from our luxury storefront.'
+    title: 'Shop Solar Equipment & Accessories — SAINT GLOBAL SOLAR',
+    description: 'Browse our collection of high-efficiency solar panels, long-life Lithium-ion batteries, solar control inverters, LED bulbs, and solar water pumps.'
   },
   '/contact': {
-    title: 'Contact Us — JGOLD SIGNATURES Customer Support',
-    description: 'Get in touch with JGOLD SIGNATURES. Reach out to our Lagos styling and support team for inquiries, sizing consultation, or order assistance.'
+    title: 'Contact Us — SAINT GLOBAL SOLAR Showroom Kano',
+    description: 'Get in touch with SAINT GLOBAL SOLAR. Visit our showroom at Shop No. 3A, Yahaya Ibrahim Plaza No. 40 France Road, Kano or call 09110019990, 08142943188.'
   },
   '/blog': {
-    title: 'Luxury Fashion & Styling Blog — JGOLD SIGNATURES',
-    description: 'Stay updated with the latest men\'s styling advice, shoe care guides, and fashion trends from JGOLD SIGNATURES.'
+    title: 'Solar Power Guides & Energy Blog — SAINT GLOBAL SOLAR',
+    description: 'Stay updated with clean energy tips, battery maintenance guides, solar panel installation advice, and news from SAINT GLOBAL SOLAR.'
   },
   '/faq': {
-    title: 'Frequently Asked Questions — JGOLD SIGNATURES',
-    description: 'Find answers to common questions about JGOLD SIGNATURES shoe sizing, shipping rates, payment gateways, and return policies.'
+    title: 'FAQs & Support — SAINT GLOBAL SOLAR',
+    description: 'Find answers to questions about solar panel lifespan, lithium battery warranties, installation fees, and general contractor services.'
   },
   '/affiliate': {
-    title: 'Affiliate Partnership Program — JGOLD SIGNATURES',
-    description: 'Join the JGOLD SIGNATURES affiliate program. Earn commissions by referring customers to our luxury men\'s clothing and footwear store.'
+    title: 'Affiliate Partnership Program — SAINT GLOBAL SOLAR',
+    description: 'Join the SAINT GLOBAL SOLAR affiliate program. Earn commissions by referring customers to our premium solar products and installation services.'
   },
   '/quality': {
-    title: 'Premium Craftsmanship & Quality Assurance — JGOLD SIGNATURES',
-    description: 'JGOLD SIGNATURES operates under strict quality standards, ensuring all footwear and accessories meet international premium grade inspections.'
+    title: 'Durability Assurance & Quality Standards — SAINT GLOBAL SOLAR',
+    description: 'Durability is our goal. All solar panels, inverter components, and lithium cells go through strict double-pass quality control tests before deployment.'
   },
   '/export': {
-    title: 'Global Delivery & Shipping Services — JGOLD SIGNATURES',
-    description: 'JGOLD SIGNATURES offers premium express shipping for our luxury products to clients globally.'
+    title: 'Delivery & Solar Logistics — SAINT GLOBAL SOLAR',
+    description: 'SAINT GLOBAL SOLAR offers secure, tracked shipping for all solar equipment and panels across Nigeria.'
   },
   '/gallery': {
-    title: 'JGOLD SIGNATURES — Product Gallery & Craftsmanship',
-    description: 'Explore photos of our handcrafted leather shoes, premium apparel, and detailed design processes.'
+    title: 'Solar Installations & Project Gallery — SAINT GLOBAL SOLAR',
+    description: 'Explore photos of our solar system installations, premium lithium battery packs, solar rechargeable fans, and local Kano projects.'
   },
   '/terms': {
-    title: 'Terms of Service — JGOLD SIGNATURES',
-    description: 'Read the terms and conditions governing the use of JGOLD SIGNATURES website, ordering systems, and premium commerce services.'
+    title: 'Terms of Service — SAINT GLOBAL SOLAR',
+    description: 'Read the terms and conditions governing the purchase, installation, and contract services offered by SAINT GLOBAL SOLAR.'
   },
   '/privacy': {
-    title: 'Privacy Policy — JGOLD SIGNATURES',
-    description: 'Review our privacy policy to understand how JGOLD SIGNATURES handles and protects your personal and transactional information.'
+    title: 'Privacy Policy — SAINT GLOBAL SOLAR',
+    description: 'Review our privacy policy to understand how SAINT GLOBAL SOLAR handles and protects client information.'
   },
   '/refund': {
-    title: 'Refund & Exchange Policy — JGOLD SIGNATURES',
-    description: 'Understand the terms and procedures for exchanges, size replacements, and refunds at JGOLD SIGNATURES.'
+    title: 'Warranty & Return Policy — SAINT GLOBAL SOLAR',
+    description: 'Understand the terms and procedures for warranty claims, solar component exchanges, and refunds at SAINT GLOBAL SOLAR.'
   }
 }
 
@@ -273,7 +273,7 @@ function AppLayout() {
       </Routes>
 
       {!hideHeaderFooter && <Footer />}
-      {!location.pathname.startsWith('/admin') && <WhatsAppWidget />}
+      {!location.pathname.startsWith('/admin') && <ContactWidgets />}
     </div>
   )
 }

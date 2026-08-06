@@ -8,7 +8,7 @@ export default function RefundPage() {
       {/* Page Hero Header */}
       <section style={{ background: 'linear-gradient(135deg, #0f0d0a 0%, #1c1813 100%)', color: '#ffffff', padding: '80px 24px', textAlign: 'center' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <span style={{ fontSize: '12px', fontWeight: '800', color: '#c5a880', textTransform: 'uppercase', letterSpacing: '2px' }}>
+          <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '2px' }}>
             Trade Policies
           </span>
           <h1 style={{ fontSize: '40px', fontWeight: 800, margin: 0, fontFamily: 'var(--font-heading)' }}>
@@ -30,7 +30,7 @@ export default function RefundPage() {
           boxShadow: '0 4px 12px rgba(15, 23, 42, 0.03)'
         }} className="policy-card">
           <p style={{ fontSize: '16px', lineHeight: '1.75', color: '#475569', marginTop: 0, marginBottom: '32px' }}>
-            At <strong>JGOLD SIGNATURES</strong>, we take pride in designing and handcrafting premium footwear and accessories. We operate a clear commercial policy to assist our clients with size replacements and returns.
+            At <strong>SAINT GLOBAL SOLAR</strong>, we take pride in designing and handcrafting premium footwear and accessories. We operate a clear commercial policy to assist our clients with size replacements and returns.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
@@ -42,7 +42,7 @@ export default function RefundPage() {
               </p>
               <div style={{
                 background: '#faf8f5',
-                borderLeft: '4px solid #c5a880',
+                borderLeft: '4px solid var(--gold)',
                 padding: '16px',
                 borderRadius: '0 8px 8px 0',
                 color: '#5c4e3c',
@@ -78,7 +78,7 @@ export default function RefundPage() {
           <p style={{ fontSize: '14.5px', color: '#64748b', margin: 0 }}>
             Please submit your order number and request details to our customer experience team.
           </p>
-          <a href="mailto:admin@jgoldsignatures.com.ng" style={{
+          <a href="mailto:admin@saintglobalsolar.com" style={{
             background: 'var(--brand-primary)',
             color: '#ffffff',
             padding: '11px 24px',

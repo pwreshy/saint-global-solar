@@ -25,32 +25,32 @@ export default function FAQPage() {
   const faqData = [
     {
       category: 'General',
-      question: 'What is JGOLD SIGNATURES and how does it work?',
-      answer: 'JGOLD SIGNATURES is a premium men\'s luxury brand specializing in exquisite handcrafted leather shoes and elegant clothing accessories. You can browse our products online, select your size, and make a purchase directly through our secure storefront.'
+      question: 'What is SAINT GLOBAL SOLAR and how does it work?',
+      answer: 'SAINT GLOBAL SOLAR is a premium solar equipment distributor and general contractor specializing in high-efficiency monocrystalline solar panels, Lithium-ion battery systems (LiFePO4), solar rechargeable fans, LED lighting, and control inverters. You can buy equipment online or contact us directly to design your system.'
     },
     {
       category: 'Payments',
       question: 'What payment methods do you support?',
-      answer: 'We support credit/debit card payments, USSD, and instant transfers through Paystack. We also support direct bank transfers; simply upload a screenshot of your transfer receipt during checkout for our team to verify.'
+      answer: 'We support credit/debit cards, USSD, and instant bank transfers through Paystack. We also accept manual bank transfers; simply upload your transfer receipt during checkout for quick verification by our administrative team.'
     },
     {
-      category: 'Sizing',
-      question: 'How do I select the correct shoe size?',
-      answer: 'We utilize standard European (EU) shoe sizes. Sizing chart details are available on product description pages. If you are unsure, feel free to chat with our style support team on WhatsApp (+2347059297121) for expert guidance.'
+      category: 'Installation',
+      question: 'Do you provide professional installation and maintenance?',
+      answer: 'Yes! We have a certified team of solar installation engineers who design and wire custom systems for residential and industrial properties. You can request installation services during checkout or by calling our hotlines.'
     },
     {
       category: 'Shipping',
       question: 'Do you offer nationwide shipping?',
-      answer: 'Yes! We ship nationwide across Nigeria. Delivery inside Lagos takes 1-3 business days, while deliveries to other states take 3-5 business days. International shipping is also available upon request.'
+      answer: 'Yes! We ship panels, heavy batteries, and inverters securely across Nigeria. Deliveries within Kano arrive in 1-2 business days, while shipments to other states take 3-5 business days.'
     },
     {
-      category: 'Returns',
-      question: 'What is your exchange and return policy?',
-      answer: 'We accept exchanges for sizing issues within 7 days of delivery. The items must be unworn, undamaged, and returned in their original luxury packaging. Contact our support team to coordinate returns.'
+      category: 'Warranty',
+      question: 'What is your warranty policy on equipment?',
+      answer: 'Durability is our goal. We provide a 7-year warranty on our Lithium-ion batteries (LiFePO4) and a 10-year warranty on monocrystalline solar panels, protecting against performance degradation and structural faults.'
     }
   ]
 
-  const categories = ['All', 'General', 'Payments', 'Sizing', 'Shipping', 'Returns']
+  const categories = ['All', 'General', 'Payments', 'Installation', 'Shipping', 'Warranty']
 
   const filteredFaqs = faqData.filter(faq => {
     const matchesSearch = 
@@ -72,16 +72,22 @@ export default function FAQPage() {
     <div style={{ background: '#ffffff', fontFamily: 'var(--font)', color: '#1e293b' }}>
       
       {/* Page Hero Header */}
-      <section style={{ background: 'linear-gradient(135deg, #0f0d0a 0%, #1c1813 100%)', color: '#ffffff', padding: '80px 24px', textAlign: 'center' }}>
+      <section style={{ 
+        position: 'relative',
+        background: 'linear-gradient(rgba(11, 15, 25, 0.85), rgba(26, 32, 44, 0.85)), url("/nigeria_solar_hero.jpg") no-repeat center center / cover', 
+        color: '#ffffff', 
+        padding: '100px 24px', 
+        textAlign: 'center' 
+      }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <span style={{ fontSize: '12px', fontWeight: '800', color: '#c5a880', textTransform: 'uppercase', letterSpacing: '2px' }}>
+          <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '2px' }}>
             Help Center
           </span>
           <h1 style={{ fontSize: '40px', fontWeight: 800, margin: 0, fontFamily: 'var(--font-heading)' }}>
             Frequently Asked Questions
           </h1>
           <p style={{ fontSize: '16px', color: '#f4eee3', lineHeight: '1.6', margin: 0 }}>
-            Find quick answers about footwear sizing, payments, exchanges, and nationwide shipping options.
+            Find quick answers about solar panels, lithium-ion batteries, warranties, installations, and nationwide shipping.
           </p>
         </div>
       </section>

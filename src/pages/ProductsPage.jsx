@@ -599,16 +599,22 @@ export default function ProductsPage() {
     <div style={{ background: '#ffffff', fontFamily: 'var(--font)', color: '#1e293b' }}>
       
       {/* ─── HERO HEADER (Redesigned matching Gallery Page style) ─── */}
-      <section style={{ background: 'linear-gradient(135deg, #0f0d0a 0%, #1c1813 100%)', color: '#ffffff', padding: '80px 24px', textAlign: 'center' }}>
+      <section style={{ 
+        position: 'relative',
+        background: 'linear-gradient(rgba(11, 15, 25, 0.85), rgba(26, 32, 44, 0.85)), url("/nigeria_solar_hero.jpg") no-repeat center center / cover', 
+        color: '#ffffff', 
+        padding: '100px 24px', 
+        textAlign: 'center' 
+      }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <span style={{ fontSize: '12px', fontWeight: '800', color: '#c5a880', textTransform: 'uppercase', letterSpacing: '2px' }}>
-            Premium Store Catalog
+          <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '2px' }}>
+            Premium Solar Catalog
           </span>
           <h1 style={{ fontSize: '40px', fontWeight: 800, margin: 0, fontFamily: 'var(--font-heading)' }}>
-            Exquisite Men's Shoes & Accessories
+            Durable Solar Equipment & Accessories
           </h1>
           <p style={{ fontSize: '16px', color: '#f4eee3', lineHeight: '1.6', margin: 0 }}>
-            High-quality luxury footwear and accessories delivered to your door. Secure payments and instant support.
+            High-efficiency solar panels, lithium-ion storage batteries, control inverters, and accessories delivered across Nigeria.
           </p>
         </div>
       </section>
@@ -771,7 +777,7 @@ export default function ProductsPage() {
                     <Link to={`/product/${product.slug || product.id}`} style={{ display: 'block', width: '100%', aspectRatio: '1 / 1', overflow: 'hidden', background: '#f8fafc' }}>
                       <img 
                         src={product.cover_image || '/logo.png'} 
-                        alt={`${product.title.replace(/\s+slug$/i, '')} - Premium product from JGOLD SIGNATURES`} 
+                        alt={`${product.title.replace(/\s+slug$/i, '')} - Premium product from SAINT GLOBAL SOLAR`} 
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         loading="lazy"
                         onError={e => { e.currentTarget.src = '/logo.png'; e.currentTarget.style.padding = '20px' }}

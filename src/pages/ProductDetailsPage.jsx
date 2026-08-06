@@ -43,18 +43,18 @@ export default function ProductDetailsPage() {
       }
 
       setProduct(prod)
-      setActiveImage(prod.cover_image || '/logo.png')
+      setActiveImage(prod.cover_image || '/logo_black.png')
 
       // SEO Dynamic title and description injection
-      document.title = `${prod.title.replace(/\s+slug$/i, '')} — Buy Online | JGOLD Store`
+      document.title = `${prod.title.replace(/\s+slug$/i, '')} — Buy Online | SAINT GLOBAL SOLAR Store`
       const metaDesc = document.querySelector('meta[name="description"]')
       if (metaDesc) {
-        metaDesc.setAttribute('content', prod.description || `Buy ${prod.title} at JGOLD SIGNATURES. Premium handcrafted footwear.`)
+        metaDesc.setAttribute('content', prod.description || `Buy ${prod.title} at SAINT GLOBAL SOLAR. Premium handcrafted footwear.`)
       }
       const ogTitle = document.querySelector('meta[property="og:title"]')
-      if (ogTitle) ogTitle.setAttribute('content', `${prod.title.replace(/\s+slug$/i, '')} — Buy Online | JGOLD Store`)
+      if (ogTitle) ogTitle.setAttribute('content', `${prod.title.replace(/\s+slug$/i, '')} — Buy Online | SAINT GLOBAL SOLAR Store`)
       const ogDesc = document.querySelector('meta[property="og:description"]')
-      if (ogDesc) ogDesc.setAttribute('content', prod.description || `Buy ${prod.title} at JGOLD SIGNATURES.`)
+      if (ogDesc) ogDesc.setAttribute('content', prod.description || `Buy ${prod.title} at SAINT GLOBAL SOLAR.`)
 
       // Pre-select first options of variations if available
       if (prod.variations?.attributes && prod.variations.attributes.length > 0) {
@@ -211,7 +211,7 @@ export default function ProductDetailsPage() {
   if (loading) {
     return (
       <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#ffffff', fontFamily: "var(--font)", zIndex: 9999 }}>
-        <img src="/logo.png" alt="JGOLD SIGNATURES" style={{ height: 100, width: 'auto', marginBottom: 24 }} />
+        <img src="/logo_black.png" alt="SAINT GLOBAL SOLAR" style={{ height: 100, width: 'auto', marginBottom: 24 }} />
         <div style={{ width: '40px', height: '40px', border: '3px solid #f1f5f9', borderTopColor: 'var(--brand-primary)', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
         <p style={{ color: '#64748b', marginTop: 16, fontSize: '14px' }}>Loading product details...</p>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
@@ -276,7 +276,7 @@ export default function ProductDetailsPage() {
               src={activeImage} 
               alt={`${product.title.replace(/\s+slug$/i, '')} - Premium agricultural export grade product`} 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              onError={e => { e.currentTarget.src = '/logo.png'; e.currentTarget.style.objectFit = 'contain'; e.currentTarget.style.padding = '40px' }}
+              onError={e => { e.currentTarget.src = '/logo_black.png'; e.currentTarget.style.objectFit = 'contain'; e.currentTarget.style.padding = '40px' }}
             />
           </div>
 
@@ -471,7 +471,7 @@ export default function ProductDetailsPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px', color: '#64748b', borderTop: '1px solid #e2e8f0', paddingTop: '16px' }}>
             <span><strong>Weight (kg):</strong> {selectedVariant?.weight || product.weight || 'N/A'}</span>
             <span><strong>Category:</strong> {product.meta_title || (product.type === 'physical' ? 'Exquisite Shoes' : 'Accessories')}</span>
-            <span><strong>SKU:</strong> JGOLD-{product.id.substring(0, 8).toUpperCase()}</span>
+            <span><strong>SKU:</strong> SGS-{product.id.substring(0, 8).toUpperCase()}</span>
           </div>
 
         </div>
@@ -673,11 +673,11 @@ export default function ProductDetailsPage() {
                   {/* Product Image — fixed height, object-fit: cover */}
                   <Link to={`/product/${prod.slug || prod.id}`} style={{ display: 'block', height: '160px', overflow: 'hidden', background: '#f8fafc' }}>
                     <img 
-                      src={prod.cover_image || '/logo.png'} 
+                      src={prod.cover_image || '/logo_black.png'} 
                       alt={`${prod.title.replace(/\s+slug$/i, '')} related product`} 
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       loading="lazy"
-                      onError={e => { e.currentTarget.src = '/logo.png'; e.currentTarget.style.objectFit = 'contain'; e.currentTarget.style.padding = '20px' }}
+                      onError={e => { e.currentTarget.src = '/logo_black.png'; e.currentTarget.style.objectFit = 'contain'; e.currentTarget.style.padding = '20px' }}
                     />
                   </Link>
 

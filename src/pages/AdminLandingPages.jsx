@@ -69,7 +69,7 @@ export default function AdminLandingPages() {
         for (let i = 0; i < diff; i++) {
           const nextIndex = result.length
           result.push({ 
-            id_number: `JGOLD-${101 + nextIndex}`, 
+            id_number: `SGS-${101 + nextIndex}`, 
             image_url: '', 
             price: '', 
             colors: '', 
@@ -102,9 +102,9 @@ export default function AdminLandingPages() {
     setSlug('')
     setProductCount(3)
     setFormProducts([
-      { id_number: 'JGOLD-101', image_url: '', price: '', colors: 'blue, red, brown', available_sizes: ['40', '41', '42', '43', '44', '45', '46'] },
-      { id_number: 'JGOLD-102', image_url: '', price: '', colors: 'black, white', available_sizes: ['40', '41', '42', '43', '44', '45', '46'] },
-      { id_number: 'JGOLD-103', image_url: '', price: '', colors: 'brown, tan', available_sizes: ['40', '41', '42', '43', '44', '45', '46'] }
+      { id_number: 'SGS-101', image_url: '', price: '', colors: 'blue, red, brown', available_sizes: ['40', '41', '42', '43', '44', '45', '46'] },
+      { id_number: 'SGS-102', image_url: '', price: '', colors: 'black, white', available_sizes: ['40', '41', '42', '43', '44', '45', '46'] },
+      { id_number: 'SGS-103', image_url: '', price: '', colors: 'brown, tan', available_sizes: ['40', '41', '42', '43', '44', '45', '46'] }
     ])
     setHeadline('Handcrafted Luxury For The Modern Gentleman')
     setSubheadline('Experience unmatched comfort and style with our premium bespoke collection, tailored to perfection.')
@@ -346,7 +346,7 @@ export default function AdminLandingPages() {
                     {page.title}
                   </div>
                   <div style={{ marginBottom: '8px' }}>
-                    <a href={`/l/${page.slug}`} target="_blank" rel="noreferrer" style={{ color: '#c5a880', fontWeight: 600, textDecoration: 'none', fontSize: '13px' }}>
+                    <a href={`/l/${page.slug}`} target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', fontWeight: 600, textDecoration: 'none', fontSize: '13px' }}>
                       /l/{page.slug}
                     </a>
                   </div>
@@ -377,7 +377,7 @@ export default function AdminLandingPages() {
                     <tr key={page.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
                       <td style={{ padding: '16px', fontWeight: 600, color: '#0f0d0a' }}>{page.title}</td>
                       <td style={{ padding: '16px' }}>
-                        <a href={`/l/${page.slug}`} target="_blank" rel="noreferrer" style={{ color: '#c5a880', fontWeight: 600, textDecoration: 'none' }}>
+                        <a href={`/l/${page.slug}`} target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', fontWeight: 600, textDecoration: 'none' }}>
                           /l/{page.slug}
                         </a>
                       </td>
@@ -588,7 +588,7 @@ export default function AdminLandingPages() {
                     type="text"
                     value={prod.id_number}
                     onChange={e => handleProductFieldChange(idx, 'id_number', e.target.value)}
-                    placeholder="e.g. JGOLD-101"
+                    placeholder="e.g. SGS-101"
                     style={{ ...inputStyle, padding: '8px 10px', fontSize: 12, marginBottom: 12 }}
                     required
                   />

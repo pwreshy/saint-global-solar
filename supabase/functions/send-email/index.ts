@@ -1,4 +1,4 @@
-// JGOLD SIGNATURES E-Commerce Email System — Supabase Edge Function
+// SAINT GLOBAL SOLAR E-Commerce Email System — Supabase Edge Function
 // Handles all transactional emails via Resend API
 //
 // Deploy: supabase functions deploy send-email
@@ -16,9 +16,9 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || ""
-const ADMIN_EMAIL    = Deno.env.get("ADMIN_EMAIL") || "nprecious.official@gmail.com"
-const FROM_EMAIL     = Deno.env.get("FROM_EMAIL") || "JGOLD SIGNATURES <orders@jgoldsignatures.com.ng>"
-const STORE_URL      = Deno.env.get("STORE_URL") || "https://jgoldsignatures.com.ng"
+const ADMIN_EMAIL    = Deno.env.get("ADMIN_EMAIL") || "info@saintglobalsolar.com"
+const FROM_EMAIL     = Deno.env.get("FROM_EMAIL") || "SAINT GLOBAL SOLAR <orders@saintglobalsolar.com>"
+const STORE_URL      = Deno.env.get("STORE_URL") || "https://saintglobalsolar.com"
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -27,11 +27,11 @@ const corsHeaders = {
 
 // ─── BRAND CONSTANTS ──────────────────────────────────────────────────────────
 const BRAND = {
-  primary:   "#0f0d0a",
-  secondary: "#1c1813",
-  accent:    "#dfb26c",
-  gold:      "#c5a880",
-  light:     "#faf8f5",
+  primary:   "#0b0f19",
+  secondary: "#1a202c",
+  accent:    "#f97316",
+  gold:      "#ea580c",
+  light:     "#fff7ed",
   white:     "#ffffff",
   grey:      "#f8fafc",
   textDark:  "#0f172a",
@@ -47,17 +47,17 @@ function baseTemplate(content: string, previewText = "") {
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>JGOLD SIGNATURES</title>
+  <title>SAINT GLOBAL SOLAR</title>
   <!--[if mso]><style>* { font-family: Arial, sans-serif !important; }</style><![endif]-->
 </head>
-<body style="margin:0;padding:0;background-color:#faf8f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:${BRAND.textDark};">
-  ${previewText ? `<div style="display:none;max-height:0;overflow:hidden;font-size:1px;color:#faf8f5;">${previewText}</div>` : ""}
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#faf8f5;min-height:100vh;">
+<body style="margin:0;padding:0;background-color:#fffcf8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:${BRAND.textDark};">
+  ${previewText ? `<div style="display:none;max-height:0;overflow:hidden;font-size:1px;color:#fffcf8;">${previewText}</div>` : ""}
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#fffcf8;min-height:100vh;">
     <tr>
       <td align="center" style="padding:40px 16px 60px;">
 
         <!-- Email Card -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(15,23,42,0.06);border:1px solid #e3d5c1;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(15,23,42,0.06);border:1px solid #fed7aa;">
 
           <!-- HEADER -->
           <tr>
@@ -66,9 +66,9 @@ function baseTemplate(content: string, previewText = "") {
                 <tr>
                   <td align="center">
                     <a href="${STORE_URL}" target="_blank" style="text-decoration:none;">
-                      <img src="https://jgoldsignatures.com.ng/logo.webp" alt="JGOLD SIGNATURES" width="180" style="max-width:220px;height:auto;display:block;margin:0 auto 12px;border:0;filter:brightness(0) invert(1);-webkit-filter:brightness(0) invert(1);" />
+                      <img src="https://saintglobalsolar.com/logo.svg" alt="SAINT GLOBAL SOLAR" width="180" style="max-width:220px;height:auto;display:block;margin:0 auto 12px;border:0;filter:brightness(0) invert(1);-webkit-filter:brightness(0) invert(1);" />
                     </a>
-                    <p style="color:rgba(255,255,255,0.75);margin:0;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;">Luxury Footwear & Accessories</p>
+                    <p style="color:rgba(255,255,255,0.75);margin:0;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;">Premium Solar Solutions & Installations</p>
                   </td>
                 </tr>
               </table>
@@ -80,7 +80,7 @@ function baseTemplate(content: string, previewText = "") {
 
           <!-- FOOTER -->
           <tr>
-            <td style="background:#f8fafc;border-top:1px solid #e3d5c1;padding:32px 40px;text-align:center;">
+            <td style="background:#f8fafc;border-top:1px solid #fed7aa;padding:32px 40px;text-align:center;">
               <table width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td align="center">
@@ -89,12 +89,12 @@ function baseTemplate(content: string, previewText = "") {
                       <a href="mailto:${ADMIN_EMAIL}" style="color:${BRAND.gold};text-decoration:none;font-weight:600;">${ADMIN_EMAIL}</a>
                     </p>
                     <p style="color:${BRAND.textLight};font-size:11px;margin:0 0 16px;">
-                      JGOLD SIGNATURES · Lagos, Nigeria<br/>
+                      SAINT GLOBAL SOLAR · Kano, Nigeria<br/>
                       <a href="${STORE_URL}" style="color:${BRAND.textLight};text-decoration:none;">${STORE_URL}</a>
                     </p>
                     <div style="border-top:1px solid #e2e8f0;padding-top:16px;">
                       <p style="color:#cbd5e1;font-size:10px;margin:0;letter-spacing:0.5px;">
-                        © ${new Date().getFullYear()} JGOLD SIGNATURES. All rights reserved.<br/>
+                        © ${new Date().getFullYear()} SAINT GLOBAL SOLAR. All rights reserved.<br/>
                         You received this email because of a transaction or account on our platform.
                       </p>
                     </div>
@@ -121,7 +121,7 @@ function productBlock(d: Record<string, string>) {
         <img src="${d.product_image}" alt="${d.product_title || "Product"}" width="64" height="64" style="border-radius:10px;object-fit:cover;display:block;border:1px solid #c5a880;"/>
       </td>` : ""}
       <td style="padding:16px 20px;vertical-align:middle;">
-        <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:${BRAND.textDark};">${d.product_title || "JGOLD Product"}</p>
+        <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:${BRAND.textDark};">${d.product_title || "Solar Product"}</p>
         <p style="margin:0;font-size:12px;color:${BRAND.textMid};text-transform:capitalize;">Type: ${d.product_type || "Physical Product"}</p>
       </td>
       <td style="padding:16px 20px;text-align:right;vertical-align:middle;white-space:nowrap;">
@@ -226,7 +226,7 @@ function emailOrderConfirmed(d: Record<string, string>) {
       </div>
     </td>
   </tr>`
-  return baseTemplate(content, `Order confirmed! Your JGOLD order is being prepared.`)
+  return baseTemplate(content, `Order confirmed! Your SAINT GLOBAL SOLAR order is being prepared.`)
 }
 
 // 2. BANK TRANSFER PENDING
@@ -258,7 +258,7 @@ function emailBankTransfer(d: Record<string, string>) {
           </tr>
           <tr>
             <td style="font-size:13px;color:#78350f;padding-bottom:8px;">Account Name</td>
-            <td style="font-size:13.5px;color:#1c1917;font-weight:700;padding-bottom:8px;">${d.account_name || "JGOLD SIGNATURES"}</td>
+            <td style="font-size:13.5px;color:#1c1917;font-weight:700;padding-bottom:8px;">${d.account_name || "SAINT GLOBAL SOLAR"}</td>
           </tr>
           <tr>
             <td style="font-size:13px;color:#78350f;">Amount to Transfer</td>
@@ -280,7 +280,7 @@ function emailBankTransfer(d: Record<string, string>) {
       </div>
     </td>
   </tr>`
-  return baseTemplate(content, `Your JGOLD order is awaiting payment confirmation.`)
+  return baseTemplate(content, `Your SAINT GLOBAL SOLAR order is awaiting payment confirmation.`)
 }
 
 // 3. PAYMENT VERIFIED (bank transfer approved)
@@ -331,7 +331,7 @@ function emailOrderShipped(d: Record<string, string>) {
         <h1 style="margin:0 0 8px;font-size:26px;font-weight:900;color:${BRAND.primary};">Your Order is On Its Way!</h1>
         ${statusBadge("Shipped", "#1e40af", "#dbeafe")}
         <p style="margin:16px 0 0;font-size:15px;color:${BRAND.textMid};">
-          Hi ${d.name?.split(" ")[0] || "there"}! Your JGOLD order has been handed over to our delivery partner.
+          Hi ${d.name?.split(" ")[0] || "there"}! Your SAINT GLOBAL SOLAR order has been handed over to our delivery partner.
         </p>
       </div>
 
@@ -359,7 +359,7 @@ function emailOrderShipped(d: Record<string, string>) {
       </div>
     </td>
   </tr>`
-  return baseTemplate(content, `Your JGOLD order is on its way! Track your shipment now.`)
+  return baseTemplate(content, `Your SAINT GLOBAL SOLAR order is on its way! Track your shipment now.`)
 }
 
 // 5. ORDER DELIVERED
@@ -374,7 +374,7 @@ function emailOrderDelivered(d: Record<string, string>) {
         <h1 style="margin:0 0 8px;font-size:26px;font-weight:900;color:${BRAND.primary};">Order Delivered!</h1>
         ${statusBadge("Delivered", "#166534", "#dcfce7")}
         <p style="margin:16px 0 0;font-size:15px;color:${BRAND.textMid};">
-          Your order has been delivered, ${d.name?.split(" ")[0] || "there"}! We hope you're enjoying your premium JGOLD products.
+          Your order has been delivered, ${d.name?.split(" ")[0] || "there"}! We hope you're enjoying your premium SAINT GLOBAL SOLAR products.
         </p>
       </div>
 
@@ -405,7 +405,7 @@ function emailOrderDelivered(d: Record<string, string>) {
       </div>
     </td>
   </tr>`
-  return baseTemplate(content, `Your JGOLD order has been delivered! We'd love to hear from you.`)
+  return baseTemplate(content, `Your SAINT GLOBAL SOLAR order has been delivered! We'd love to hear from you.`)
 }
 
 // 6. WELCOME EMAIL
@@ -417,7 +417,7 @@ function emailWelcome(d: Record<string, string>) {
         <div style="display:inline-flex;width:64px;height:64px;border-radius:50%;background:${BRAND.light};margin-bottom:16px;align-items:center;justify-content:center;">
           <span style="font-size:32px;">🌱</span>
         </div>
-        <h1 style="margin:0 0 8px;font-size:28px;font-weight:900;color:${BRAND.primary};">Welcome to JGOLD!</h1>
+        <h1 style="margin:0 0 8px;font-size:28px;font-weight:900;color:${BRAND.primary};">Welcome to SAINT GLOBAL SOLAR!</h1>
         <p style="margin:0;font-size:15px;color:${BRAND.textMid};line-height:1.6;">
           Hello ${d.name?.split(" ")[0] || "there"}, your account is ready. You now have access to premium luxury footwear and clothing accessories.
         </p>
@@ -469,7 +469,7 @@ function emailWelcome(d: Record<string, string>) {
       </div>
     </td>
   </tr>`
-  return baseTemplate(content, `Welcome to JGOLD! Your account is ready. Start exploring luxury footwear and accessories.`)
+  return baseTemplate(content, `Welcome to SAINT GLOBAL SOLAR! Your account is ready. Start exploring luxury footwear and accessories.`)
 }
 
 // 7. ADMIN NEW ORDER NOTIFICATION
@@ -484,7 +484,7 @@ function emailAdminNewOrder(d: Record<string, string>) {
         </h1>
         ${statusBadge(isPending ? (d.payment_method === "cash_on_delivery" ? "COD Pending Dispatch" : "Pending Review") : "Payment Confirmed", isPending ? BRAND.gold : "#166534", isPending ? "#fffbeb" : "#dcfce7")}
         <p style="margin:12px 0 0;font-size:14px;color:${BRAND.textMid};">
-          A new order has been placed on JGOLD Store. See details below.
+          A new order has been placed on SAINT GLOBAL SOLAR Store. See details below.
         </p>
       </div>
 
@@ -511,7 +511,7 @@ function emailAdminNewOrder(d: Record<string, string>) {
       </div>
     </td>
   </tr>`
-  return baseTemplate(content, `New JGOLD order from ${d.name}`)
+  return baseTemplate(content, `New SAINT GLOBAL SOLAR order from ${d.name}`)
 }
 
 // 8. CASH ON DELIVERY PENDING
@@ -539,7 +539,7 @@ function emailCodOrder(d: Record<string, string>) {
     </td>
   </tr>
   `
-  return baseTemplate(content, `Order Received (Cash on Delivery) — JGOLD Store`)
+  return baseTemplate(content, `Order Received (Cash on Delivery) — SAINT GLOBAL SOLAR Store`)
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -572,14 +572,14 @@ serve(async (req: Request) => {
     type EmailType = "order_confirmed" | "bank_transfer" | "payment_verified" | "order_shipped" | "order_delivered" | "welcome" | "admin_new_order" | "cod_order_placed"
 
     const emails: Record<EmailType, { subject: string; html: (d: Record<string, string>) => string }> = {
-      order_confirmed:  { subject: "✅ Order Confirmed — JGOLD SIGNATURES",             html: emailOrderConfirmed },
-      bank_transfer:    { subject: "⏳ Order Received (Awaiting Payment) — JGOLD Store",     html: emailBankTransfer },
-      payment_verified: { subject: "🎉 Payment Confirmed — Your Order is Being Packed",       html: emailPaymentVerified },
-      order_shipped:    { subject: "🚚 Your JGOLD Order Has Shipped!",                        html: emailOrderShipped },
-      order_delivered:  { subject: "🌿 Delivered! How Was Your JGOLD Experience?",            html: emailOrderDelivered },
-      welcome:          { subject: "✨ Welcome to JGOLD SIGNATURES — Your Account is Ready", html: emailWelcome },
-      admin_new_order:  { subject: `🔔 New Order${data.name ? ` from ${data.name}` : ""} — JGOLD Store`, html: emailAdminNewOrder },
-      cod_order_placed: { subject: "📦 Order Received (Cash on Delivery) — JGOLD Store",     html: emailCodOrder },
+      order_confirmed:  { subject: "✅ Order Confirmed — SAINT GLOBAL SOLAR",             html: emailOrderConfirmed },
+      bank_transfer:    { subject: "⏳ Order Received (Awaiting Payment) — SAINT GLOBAL SOLAR",     html: emailBankTransfer },
+      payment_verified: { subject: "🎉 Payment Confirmed — Your Solar Order is Being Packed",       html: emailPaymentVerified },
+      order_shipped:    { subject: "🚚 Your SAINT GLOBAL SOLAR Order Has Shipped!",                        html: emailOrderShipped },
+      order_delivered:  { subject: "🌿 Delivered! How Was Your SAINT GLOBAL SOLAR Experience?",            html: emailOrderDelivered },
+      welcome:          { subject: "✨ Welcome to SAINT GLOBAL SOLAR — Your Account is Ready", html: emailWelcome },
+      admin_new_order:  { subject: `🔔 New Order${data.name ? ` from ${data.name}` : ""} — SAINT GLOBAL SOLAR`, html: emailAdminNewOrder },
+      cod_order_placed: { subject: "📦 Order Received (Cash on Delivery) — SAINT GLOBAL SOLAR",     html: emailCodOrder },
     }
 
     const emailConfig = emails[type as EmailType]

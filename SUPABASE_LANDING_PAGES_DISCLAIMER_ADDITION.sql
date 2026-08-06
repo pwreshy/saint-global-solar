@@ -1,5 +1,5 @@
 -- ============================================================================
--- JGOLD SIGNATURES - LANDING PAGES DISCLAIMER SWITCH & TEXT ADDITIONS
+-- SAINT GLOBAL SOLAR - LANDING PAGES DISCLAIMER SWITCH & TEXT ADDITIONS
 -- ============================================================================
 -- Copy and run this script inside your Supabase Dashboard SQL Editor
 -- (https://supabase.com/dashboard/project/figbzrnlgyrjkzxjwctj/sql/new)

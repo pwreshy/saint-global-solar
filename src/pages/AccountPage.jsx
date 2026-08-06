@@ -90,7 +90,7 @@ export default function AccountPage() {
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
           <div style={{ position: 'absolute', width: 160, height: 160, background: 'radial-gradient(circle, rgba(37,99,235,0.25) 0%, rgba(37,99,235,0) 70%)', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(24px)', animation: 'ambient-glow 3s ease-in-out infinite' }} />
-          <img src="/logo.png" alt="E-COM WEB" style={{ height: 100, width: 'auto', maxWidth: 280, objectFit: 'contain', marginBottom: 36, filter: 'drop-shadow(0 0 10px rgba(37,99,235,0.15))', animation: 'logo-pulse 2.2s ease-in-out infinite' }} />
+          <img src="/logo_black.png" alt="E-COM WEB" style={{ height: 100, width: 'auto', maxWidth: 280, objectFit: 'contain', marginBottom: 36, filter: 'drop-shadow(0 0 10px rgba(37,99,235,0.15))', animation: 'logo-pulse 2.2s ease-in-out infinite' }} />
           <div className="premium-spinner" />
           <p style={{ color: '#94a3b8', marginTop: 16, fontSize: '14px', letterSpacing: '0.5px', position: 'relative', zIndex: 1 }}>Loading Account...</p>
         </div>

@@ -6,16 +6,22 @@ export default function QualityPage() {
     <div style={{ background: '#ffffff', fontFamily: 'var(--font)', color: '#1e293b' }}>
       
       {/* Page Hero Header */}
-      <section style={{ background: 'linear-gradient(135deg, #0f0d0a 0%, #1c1813 100%)', color: '#ffffff', padding: '80px 24px', textAlign: 'center' }}>
+      <section style={{ 
+        position: 'relative',
+        background: 'linear-gradient(rgba(11, 15, 25, 0.85), rgba(26, 32, 44, 0.85)), url("/nigeria_solar_hero.jpg") no-repeat center center / cover', 
+        color: '#ffffff', 
+        padding: '100px 24px', 
+        textAlign: 'center' 
+      }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <span style={{ fontSize: '12px', fontWeight: '800', color: '#c5a880', textTransform: 'uppercase', letterSpacing: '2px' }}>
+          <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '2px' }}>
             International Standards
           </span>
           <h1 style={{ fontSize: '40px', fontWeight: 800, margin: 0, fontFamily: 'var(--font-heading)' }}>
-            Quality Assurance & Craftsmanship
+            Quality Assurance & Engineering Excellence
           </h1>
           <p style={{ fontSize: '16px', color: '#f4eee3', lineHeight: '1.6', margin: 0 }}>
-            At JGOLD SIGNATURES, quality is a promise. We maintain rigorous standards from premium leather sourcing to final packaging to ensure our clients receive exquisite products.
+            At SAINT GLOBAL SOLAR, durability is our goal. We maintain rigorous testing standards from solar cell sourcing to inverter load-testing to ensure our systems work flawlessly for years.
           </p>
         </div>
       </section>
@@ -23,31 +29,31 @@ export default function QualityPage() {
       {/* Quality Pillars Grid */}
       <section style={{ padding: '80px 24px', maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <h2 style={{ fontSize: '28px', color: '#0d2e1a', fontWeight: 800 }}>Our Quality Pillars</h2>
-          <p style={{ color: '#64748b', fontSize: '15px' }}>Four stages of strict checks before packaging and container loading.</p>
+          <h2 style={{ fontSize: '28px', color: '#0b0f19', fontWeight: 800 }}>Our Testing Pillars</h2>
+          <p style={{ color: '#64748b', fontSize: '15px' }}>Four stages of strict checks before packaging and delivery.</p>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }} className="quality-grid">
           {[
             {
               num: '01',
-              title: 'Leather Selection',
-              desc: 'We source only premium full-grain Italian leathers and premium fabrics, auditing textures and durability metrics.'
+              title: 'Cell Sourcing',
+              desc: 'We source only premium Grade-A monocrystalline cells and long-life Lithium-iron phosphate cells, auditing conversion rates.'
             },
             {
               num: '02',
-              title: 'Master Stitching',
-              desc: 'Footwear is handcrafted by master artisans. Stitching tension, alignment, and cuts are manually checked for perfection.'
+              title: 'Wiring Integrity',
+              desc: 'System boards and inverter circuits are set up by certified engineers. Wiring path insulation and soldering is checked manually.'
             },
             {
               num: '03',
-              title: 'Fit & Comfort Audit',
-              desc: 'Ensuring correct sizing and cushioning is critical. We perform strict walking and flexibility checks for every product.'
+              title: 'Load Test Audit',
+              desc: 'Ensuring correct voltage output is critical. We perform strict high-load voltage, discharge rate, and cycle tests on batteries.'
             },
             {
               num: '04',
-              title: 'Elegance Packaging',
-              desc: 'Every item is hand-packed in protective custom dust bags and rigid signature boxes before shipment.'
+              title: 'Secure Packaging',
+              desc: 'Every item is safely packed in customized wooden crates and shock-absorbing layers before shipment to protect solar cells.'
             }
           ].map((item, idx) => (
             <div key={idx} style={{
@@ -59,8 +65,8 @@ export default function QualityPage() {
               flexDirection: 'column',
               gap: '12px'
             }}>
-              <div style={{ fontSize: '32px', fontWeight: 800, color: 'var(--brand-primary)', opacity: 0.15 }}>{item.num}</div>
-              <h3 style={{ fontSize: '17px', fontWeight: 800, color: '#0f0d0a', margin: 0 }}>{item.title}</h3>
+              <div style={{ fontSize: '32px', fontWeight: 800, color: 'var(--gold)', opacity: 0.2 }}>{item.num}</div>
+              <h3 style={{ fontSize: '17px', fontWeight: 800, color: '#0b0f19', margin: 0 }}>{item.title}</h3>
               <p style={{ fontSize: '13px', color: '#475569', lineHeight: '1.6', margin: 0 }}>{item.desc}</p>
             </div>
           ))}
@@ -68,33 +74,33 @@ export default function QualityPage() {
       </section>
 
       {/* Certifications & Compliances banner */}
-      <section style={{ padding: '60px 24px', background: '#faf8f5', borderTop: '1px solid #e3d5c1', borderBottom: '1px solid #e3d5c1' }}>
+      <section style={{ padding: '60px 24px', background: '#fffcf8', borderTop: '1px solid var(--gold)', borderBottom: '1px solid var(--gold)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center' }} className="cert-flex">
           <div>
-            <h2 style={{ fontSize: '28px', color: '#0f0d0a', fontWeight: 800, marginBottom: '16px' }}>Premium Sourcing & Safety</h2>
+            <h2 style={{ fontSize: '28px', color: '#0b0f19', fontWeight: 800, marginBottom: '16px' }}>Premium Sourcing & Safety</h2>
             <p style={{ fontSize: '14.5px', color: '#475569', lineHeight: '1.7', marginBottom: '12px' }}>
-              JGOLD SIGNATURES products meet strict international craftsmanship guidelines and ethical sourcing audits.
+              SAINT GLOBAL SOLAR products meet strict international solar energy standards and electrical safety compliance.
             </p>
             <p style={{ fontSize: '14.5px', color: '#475569', lineHeight: '1.7', margin: 0 }}>
-              All footwear batches carry premium stitching guarantees, comfort cushioning reports, and genuine leather certificates.
+              All battery units carry premium BMS (Battery Management System) checks, discharge safety logs, and conversion efficiency reports.
             </p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             {[
-              '100% Genuine Leather',
-              'Artisan Handcrafted',
-              'Ethically Sourced',
-              'Premium Packaging'
+              'Grade-A Lithium Cells',
+              'Monocrystalline Panels',
+              'CE Certified Inverters',
+              'Expert On-site Wiring'
             ].map((text, idx) => (
               <div key={idx} style={{
                 background: '#ffffff',
-                border: '1.5px solid #c5a880',
+                border: '1.5px solid var(--gold)',
                 borderRadius: '6px',
                 padding: '16px',
                 textAlign: 'center',
                 fontWeight: 700,
                 fontSize: '13.5px',
-                color: 'var(--brand-primary)',
+                color: 'var(--gold)',
                 boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)'
               }}>
                 {text}
@@ -107,12 +113,12 @@ export default function QualityPage() {
       {/* Call to action */}
       <section style={{ padding: '80px 24px', textAlign: 'center' }}>
         <div style={{ maxWidth: '600px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
-          <h2 style={{ fontSize: '28px', color: '#0f0d0a', fontWeight: 800, margin: 0 }}>Discover Luxury Sizing</h2>
+          <h2 style={{ fontSize: '28px', color: '#0b0f19', fontWeight: 800, margin: 0 }}>Durable Power Starts Here</h2>
           <p style={{ fontSize: '15px', color: '#64748b', lineHeight: '1.6', margin: 0 }}>
-            Explore our catalog online to view sizing guidelines, detailed materials reviews, and select your signature pieces.
+            Explore our solar panels, lithium backup storage packs, inverter controllers, and expert engineering design services.
           </p>
           <Link to="/products" style={{
-            background: 'var(--brand-primary)',
+            background: 'var(--gold)',
             color: '#ffffff',
             padding: '12px 28px',
             borderRadius: '4px',
@@ -120,9 +126,9 @@ export default function QualityPage() {
             textDecoration: 'none',
             fontSize: '14px',
             transition: 'background-color 0.2s'
-          }} onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--brand-hover)'}
-             onMouseLeave={e => e.currentTarget.style.backgroundColor = 'var(--brand-primary)'}>
-            Explore Products
+          }} onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--gold-d)'}
+             onMouseLeave={e => e.currentTarget.style.backgroundColor = 'var(--gold)'}>
+            Explore Solar Catalog
           </Link>
         </div>
       </section>

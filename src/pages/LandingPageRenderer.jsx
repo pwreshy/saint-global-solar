@@ -11,20 +11,20 @@ export default function LandingPageRenderer() {
   const [success, setSuccess] = useState(false)
 
   // Customer Form Fields (Loaded from localStorage if existing to prevent wiping on refresh)
-  const [name, setName] = useState(() => localStorage.getItem('jgold_lnd_name') || '')
-  const [phone, setPhone] = useState(() => localStorage.getItem('jgold_lnd_phone') || '')
-  const [email, setEmail] = useState(() => localStorage.getItem('jgold_lnd_email') || '')
-  const [address, setAddress] = useState(() => localStorage.getItem('jgold_lnd_address') || '')
-  const [state, setState] = useState(() => localStorage.getItem('jgold_lnd_state') || '')
-  const [notes, setNotes] = useState(() => localStorage.getItem('jgold_lnd_notes') || '')
-  const [paymentMethod, setPaymentMethod] = useState(() => localStorage.getItem('jgold_lnd_paymentMethod') || 'cash_on_delivery')
-  const [priceAgreed, setPriceAgreed] = useState(() => localStorage.getItem('jgold_lnd_priceAgreed') === 'true')
+  const [name, setName] = useState(() => localStorage.getItem('sgs_lnd_name') || '')
+  const [phone, setPhone] = useState(() => localStorage.getItem('sgs_lnd_phone') || '')
+  const [email, setEmail] = useState(() => localStorage.getItem('sgs_lnd_email') || '')
+  const [address, setAddress] = useState(() => localStorage.getItem('sgs_lnd_address') || '')
+  const [state, setState] = useState(() => localStorage.getItem('sgs_lnd_state') || '')
+  const [notes, setNotes] = useState(() => localStorage.getItem('sgs_lnd_notes') || '')
+  const [paymentMethod, setPaymentMethod] = useState(() => localStorage.getItem('sgs_lnd_paymentMethod') || 'cash_on_delivery')
+  const [priceAgreed, setPriceAgreed] = useState(() => localStorage.getItem('sgs_lnd_priceAgreed') === 'true')
 
   // Selected Items State
   // Format: { [id_number]: { product, sizes: ['42', '43'] } }
   const [selectedItems, setSelectedItems] = useState({})
   // Quantities for each selected shoe-size combination
-  // Format: { "JGOLD-101-42": 1 }
+  // Format: { "SGS-101-42": 1 }
   const [itemQuantities, setItemQuantities] = useState({})
 
   // Custom Dropdown Open State (for payment method)
@@ -43,14 +43,14 @@ export default function LandingPageRenderer() {
 
   // Persist form inputs in localStorage
   useEffect(() => {
-    localStorage.setItem('jgold_lnd_name', name)
-    localStorage.setItem('jgold_lnd_phone', phone)
-    localStorage.setItem('jgold_lnd_email', email)
-    localStorage.setItem('jgold_lnd_address', address)
-    localStorage.setItem('jgold_lnd_state', state)
-    localStorage.setItem('jgold_lnd_notes', notes)
-    localStorage.setItem('jgold_lnd_paymentMethod', paymentMethod)
-    localStorage.setItem('jgold_lnd_priceAgreed', String(priceAgreed))
+    localStorage.setItem('sgs_lnd_name', name)
+    localStorage.setItem('sgs_lnd_phone', phone)
+    localStorage.setItem('sgs_lnd_email', email)
+    localStorage.setItem('sgs_lnd_address', address)
+    localStorage.setItem('sgs_lnd_state', state)
+    localStorage.setItem('sgs_lnd_notes', notes)
+    localStorage.setItem('sgs_lnd_paymentMethod', paymentMethod)
+    localStorage.setItem('sgs_lnd_priceAgreed', String(priceAgreed))
   }, [name, phone, email, address, state, notes, paymentMethod, priceAgreed])
 
   useEffect(() => {
@@ -167,7 +167,7 @@ export default function LandingPageRenderer() {
 
     setSubmitting(true)
 
-    const orderRef = `JGOLD_LND_${Math.floor(100000 + Math.random() * 900000)}`
+    const orderRef = `SGS_LND_${Math.floor(100000 + Math.random() * 900000)}`
     
     // Format list of items for payload
     const itemsDescription = selectedList.map(item => 
@@ -176,7 +176,7 @@ export default function LandingPageRenderer() {
 
     const emailPayload = {
       name: name.trim(),
-      email: email.trim() || 'customer@jgoldsignatures.com.ng',
+      email: email.trim() || 'customer@saintglobalsolar.com',
       phone: phone.trim(),
       product_title: `Landing Page Order: ${itemsDescription} [Payment: ${paymentMethod === 'cash_on_delivery' ? 'Cash on Delivery' : 'Bank Transfer'}]`,
       amount: grandTotal,
@@ -188,11 +188,11 @@ export default function LandingPageRenderer() {
     }
 
     try {
-      // 1. Trigger email notification to ebonyjuliet15@yahoo.com via Edge Function
+      // 1. Trigger email notification to sales@saintglobalsolar.com via Edge Function
       const { error: emailError } = await supabase.functions.invoke('send-email', {
         body: {
           type: 'admin_new_order',
-          to: 'ebonyjuliet15@yahoo.com',
+          to: 'sales@saintglobalsolar.com',
           data: emailPayload
         }
       })
@@ -221,14 +221,14 @@ export default function LandingPageRenderer() {
       }
 
       // Clear stored values on success
-      localStorage.removeItem('jgold_lnd_name')
-      localStorage.removeItem('jgold_lnd_phone')
-      localStorage.removeItem('jgold_lnd_email')
-      localStorage.removeItem('jgold_lnd_address')
-      localStorage.removeItem('jgold_lnd_state')
-      localStorage.removeItem('jgold_lnd_notes')
-      localStorage.removeItem('jgold_lnd_paymentMethod')
-      localStorage.removeItem('jgold_lnd_priceAgreed')
+      localStorage.removeItem('sgs_lnd_name')
+      localStorage.removeItem('sgs_lnd_phone')
+      localStorage.removeItem('sgs_lnd_email')
+      localStorage.removeItem('sgs_lnd_address')
+      localStorage.removeItem('sgs_lnd_state')
+      localStorage.removeItem('sgs_lnd_notes')
+      localStorage.removeItem('sgs_lnd_paymentMethod')
+      localStorage.removeItem('sgs_lnd_priceAgreed')
 
       setSuccess(true)
 
@@ -238,7 +238,7 @@ export default function LandingPageRenderer() {
         itemsWaText += `- *Design:* ${item.id_number}\n- *Size:* ${item.size}\n- *Quantity:* ${item.quantity} pair${item.quantity > 1 ? 's' : ''}\n- *Subtotal:* ₦${Number(item.price * item.quantity).toLocaleString()}\n\n`
       })
 
-      const waText = `Hi JGOLD SIGNATURES,\n\nI just placed an order on your Landing Page (*${pageData.title}*):\n\n*Order Details:*\n${itemsWaText}*Total Amount:* ₦${grandTotal.toLocaleString()}\n*Payment Method:* ${paymentMethod === 'cash_on_delivery' ? 'Cash on Delivery' : 'Bank Transfer'}\n\n*Customer Shipping Info:*\n- *Name:* ${name}\n- *Email:* ${email}\n- *Phone:* ${phone}\n- *Delivery Address:* ${address}, ${state} State\n${notes ? `- *Notes:* ${notes}\n` : ''}\n- *Ref:* #${orderRef}`
+      const waText = `Hi SAINT GLOBAL SOLAR,\n\nI just placed an order on your Landing Page (*${pageData.title}*):\n\n*Order Details:*\n${itemsWaText}*Total Amount:* ₦${grandTotal.toLocaleString()}\n*Payment Method:* ${paymentMethod === 'cash_on_delivery' ? 'Cash on Delivery' : 'Bank Transfer'}\n\n*Customer Shipping Info:*\n- *Name:* ${name}\n- *Email:* ${email}\n- *Phone:* ${phone}\n- *Delivery Address:* ${address}, ${state} State\n${notes ? `- *Notes:* ${notes}\n` : ''}\n- *Ref:* #${orderRef}`
       
       const encodedWaText = encodeURIComponent(waText)
       setTimeout(() => {
@@ -257,7 +257,7 @@ export default function LandingPageRenderer() {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: '#faf8f5' }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ width: 40, height: 40, border: '3px solid #c5a880', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 16px' }} />
+          <div style={{ width: 40, height: 40, border: '3px solid var(--gold)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 16px' }} />
           <p style={{ color: '#64748b', fontSize: 14, fontFamily: 'sans-serif' }}>Loading luxury catalog...</p>
           <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
         </div>
@@ -320,8 +320,8 @@ export default function LandingPageRenderer() {
     <div style={{ background: '#faf8f5', minHeight: '100vh', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
       
       {/* BRAND BANNER LOGO */}
-      <div style={{ background: '#0f0d0a', padding: '24px 20px', textAlign: 'center', borderBottom: '3px solid #dfb26c' }}>
-        <img src="/logo.webp" alt="JGOLD SIGNATURES" style={{ height: 50, width: 'auto', display: 'block', margin: '0 auto', filter: 'brightness(0) invert(1)' }} />
+      <div style={{ background: '#0f0d0a', padding: '24px 20px', textAlign: 'center', borderBottom: '3px solid var(--gold)' }}>
+        <img src="/logo_white.png" alt="SAINT GLOBAL SOLAR" style={{ height: 50, width: 'auto', display: 'block', margin: '0 auto', filter: 'brightness(0) invert(1)' }} />
       </div>
 
       <main style={{ maxWidth: 840, margin: '0 auto', padding: isMobile ? '24px 12px 80px' : '40px 16px 80px' }}>
@@ -340,7 +340,7 @@ export default function LandingPageRenderer() {
             <div style={{ display: 'inline-flex', flexDirection: 'column', gap: '10px', textAlign: 'left', background: '#ffffff', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '16px 20px', maxWidth: '560px', width: '100%', boxSizing: 'border-box', marginBottom: 28 }}>
               {highlightsList.map((hl, i) => (
                 <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: '14px', color: '#374151' }}>
-                  <span style={{ color: '#dfb26c', fontWeight: 'bold' }}>✓</span>
+                  <span style={{ color: 'var(--gold)', fontWeight: 'bold' }}>✓</span>
                   <span>{hl}</span>
                 </div>
               ))}
@@ -410,7 +410,7 @@ export default function LandingPageRenderer() {
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                     />
                   ) : (
-                    <div style={{ color: '#9ca3af', fontSize: 12, fontStyle: 'italic' }}>JGOLD Design</div>
+                    <div style={{ color: '#9ca3af', fontSize: 12, fontStyle: 'italic' }}>SAINT GLOBAL SOLAR Design</div>
                   )}
                 </div>
 
@@ -519,11 +519,11 @@ export default function LandingPageRenderer() {
         {/* ORDER FORM SECTION */}
         <div style={{ background: '#ffffff', borderRadius: 20, border: '1px solid #e5e7eb', boxShadow: '0 10px 30px rgba(0,0,0,0.03)', overflow: 'hidden' }}>
           
-          <div style={{ background: '#0f0d0a', padding: '24px 20px', textAlign: 'center', borderBottom: '3px solid #dfb26c' }}>
+          <div style={{ background: '#0f0d0a', padding: '24px 20px', textAlign: 'center', borderBottom: '3px solid var(--gold)' }}>
             <h3 style={{ margin: 0, color: '#ffffff', fontSize: 20, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px' }}>
               Order Form
             </h3>
-            <p style={{ margin: '4px 0 0', color: '#c5a880', fontSize: 13 }}>Fill in details below to submit your order immediately.</p>
+            <p style={{ margin: '4px 0 0', color: 'var(--gold)', fontSize: 13 }}>Fill in details below to submit your order immediately.</p>
           </div>
 
           {success ? (
@@ -556,7 +556,7 @@ export default function LandingPageRenderer() {
                         key={item.key} 
                         style={{ 
                           background: '#faf8f5', 
-                          border: '1.5px solid #dfb26c', 
+                          border: '1.5px solid var(--gold)', 
                           borderRadius: 12, 
                           padding: '12px 16px', 
                           display: 'flex', 
@@ -613,7 +613,7 @@ export default function LandingPageRenderer() {
 
                     {/* GRAND TOTAL SUMMARY BLOCK */}
                     <div style={{ 
-                      borderTop: '1px dashed #dfb26c', 
+                      borderTop: '1px dashed var(--gold)', 
                       paddingTop: '16px', 
                       marginTop: '8px', 
                       display: 'flex', 
@@ -720,7 +720,7 @@ export default function LandingPageRenderer() {
                       outline: 'none',
                       textAlign: 'left',
                       boxSizing: 'border-box',
-                      borderColor: paymentOpen ? '#dfb26c' : '#d1d5db',
+                      borderColor: paymentOpen ? 'var(--gold)' : '#d1d5db',
                       boxShadow: paymentOpen ? '0 0 0 3px rgba(223,178,108,0.15)' : 'none'
                     }}
                   >
@@ -814,7 +814,7 @@ export default function LandingPageRenderer() {
                   background: '#0f0d0a',
                   color: '#ffffff',
                   padding: '16px 24px',
-                  border: '1px solid #dfb26c',
+                  border: '1px solid var(--gold)',
                   borderRadius: 10,
                   fontSize: '16px', // Prevent auto-zoom
                   fontWeight: 800,
@@ -847,10 +847,10 @@ export default function LandingPageRenderer() {
       </main>
 
       {/* BRAND FOOTER (CUSTOM ADAPTED) */}
-      <footer style={{ background: '#0f0d0a', borderTop: '2px solid #dfb26c', padding: '32px 20px', color: '#9ca3af', textAlign: 'center', fontSize: '12px', lineHeight: '1.6', fontFamily: 'inherit' }}>
+      <footer style={{ background: '#0f0d0a', borderTop: '2px solid var(--gold)', padding: '32px 20px', color: '#9ca3af', textAlign: 'center', fontSize: '12px', lineHeight: '1.6', fontFamily: 'inherit' }}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <p style={{ margin: '0 0 12px', color: '#c5a880', fontWeight: 600 }}>
-            © 2026 JGOLD SIGNATURES | All Rights Reserved
+          <p style={{ margin: '0 0 12px', color: 'var(--gold)', fontWeight: 600 }}>
+            © 2026 SAINT GLOBAL SOLAR | All Rights Reserved
           </p>
           <p style={{ margin: '0 0 16px', color: '#6b7280' }}>
             This site is not affiliated with Facebook, Google, or Meta in any way. 
@@ -858,11 +858,11 @@ export default function LandingPageRenderer() {
             Verification and order booking are 100% free with no hidden charges.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', borderTop: '1px solid #1f2937', paddingTop: '16px' }}>
-            <a href="/privacy" target="_blank" rel="noreferrer" style={{ color: '#dfb26c', textDecoration: 'none', fontWeight: 600 }}>Privacy Policy</a>
+            <a href="/privacy" target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none', fontWeight: 600 }}>Privacy Policy</a>
             <span style={{ color: '#374151' }}>|</span>
-            <a href="/terms" target="_blank" rel="noreferrer" style={{ color: '#dfb26c', textDecoration: 'none', fontWeight: 600 }}>Terms of Service</a>
+            <a href="/terms" target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none', fontWeight: 600 }}>Terms of Service</a>
             <span style={{ color: '#374151' }}>|</span>
-            <a href="/contact" target="_blank" rel="noreferrer" style={{ color: '#dfb26c', textDecoration: 'none', fontWeight: 600 }}>Contact Us</a>
+            <a href="/contact" target="_blank" rel="noreferrer" style={{ color: 'var(--gold)', textDecoration: 'none', fontWeight: 600 }}>Contact Us</a>
           </div>
         </div>
       </footer>

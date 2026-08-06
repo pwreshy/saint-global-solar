@@ -1,5 +1,5 @@
 -- ============================================================================
--- JGOLD SIGNATURES - LANDING PAGES DATABASE CONFIGURATION
+-- SAINT GLOBAL SOLAR - LANDING PAGES DATABASE CONFIGURATION
 -- ============================================================================
 -- Copy and run this script inside your Supabase Dashboard SQL Editor
 -- (https://supabase.com/dashboard/project/figbzrnlgyrjkzxjwctj/sql/new)

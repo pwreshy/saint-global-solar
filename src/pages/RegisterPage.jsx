@@ -95,10 +95,10 @@ export default function RegisterPage() {
         
         <div className="auth-header">
           <Link to="/" className="auth-brand-logo">
-            <img src="/logo.webp" alt={localStorage.getItem('brandName') || 'JGOLD SIGNATURES'} onError={e => { e.currentTarget.style.display = 'none' }} />
+            <img src="/logo_black.png" alt={localStorage.getItem('brandName') || 'SAINT GLOBAL SOLAR'} onError={e => { e.currentTarget.style.display = 'none' }} />
           </Link>
           <h2>Create your account</h2>
-          <p>Get started with {localStorage.getItem('brandName') || 'JGOLD SIGNATURES'} today.</p>
+          <p>Get started with {localStorage.getItem('brandName') || 'SAINT GLOBAL SOLAR'} today.</p>
         </div>
 
         <div className="auth-card">

@@ -114,7 +114,7 @@ export async function trackEvent(eventName, metadata = {}) {
       visitor_id: visitorId,
       session_id: sessionId,
       event_name: eventName,
-      page: path || '/',
+      page_path: path || '/',
       referrer,
       ...utms,
       metadata: {

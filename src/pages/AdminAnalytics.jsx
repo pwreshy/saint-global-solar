@@ -758,7 +758,7 @@ export default function AdminAnalytics() {
         <div style={{
           background: '#fff7ed',
           border: '1px solid #ffedd5',
-          color: '#c2410c',
+          color: '#ea580c',
           padding: '16px 20px',
           borderRadius: '12px',
           marginBottom: '24px',

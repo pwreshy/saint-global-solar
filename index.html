@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="/logo.webp" />
+  <link rel="preload" as="image" href="/logo_white.png" />
   <script>
     document.addEventListener('touchstart', function (event) {
       if (event.touches.length > 1) {
@@ -18,12 +18,12 @@
     });
   </script>
   <meta name="description"
-    content="JGOLD SIGNATURES — Curated collection of exquisite shoes and elegant clothing accessories. Experience premium men's luxury and modern style." />
-  <meta property="og:title" content="JGOLD SIGNATURES — Premium Men's Luxury Shoes & Accessories" />
+    content="SAINT GLOBAL SOLAR — Durability Is Our Goal. Leading dealer in premium solar panels, lithium-ion batteries, solar fans, LED bulbs, solar water pumps, and control inverters. Professional installation & general contracting in Kano, Nigeria." />
+  <meta property="og:title" content="SAINT GLOBAL SOLAR — Premium Solar Panels & Lithium Batteries" />
   <meta property="og:description"
-    content="Curated collection of exquisite shoes and elegant clothing accessories. Discover the perfect pieces that make you stand out." />
+    content="Buy durable solar panels, lithium-ion batteries, solar fans, inverters, and water pumps. Professional solar installations and general contractor services in Kano." />
   <meta property="og:type" content="website" />
-  <title>JGOLD SIGNATURES — Premium Men's Luxury Shoes & Accessories</title>
+  <title>SAINT GLOBAL SOLAR — Premium Solar Equipment & Installations</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <!-- Facebook Pixel Code -->
   <script>
@@ -57,38 +57,46 @@
   <noscript><img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=776476416911978&ev=PageView&noscript=1" /></noscript>
   <div id="root">
-    <!-- Inline loading state to prevent flash of white on initial load -->
-    <div style="position:fixed;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f8fafc;color:#0f172a;font-family:sans-serif;z-index:9999;">
-      <div style="display:flex;flex-direction:column;align-items:center;position:relative;">
-        <!-- Ambient glow behind the logo -->
-        <div style="position:absolute;width:160px;height:160px;background:radial-gradient(circle, rgba(223,178,108,0.12) 0%, rgba(223,178,108,0) 70%);top:50%;left:50%;transform:translate(-50%, -50%);filter:blur(24px);animation:ambient-glow 3s ease-in-out infinite;"></div>
-        
-        <!-- Pulse-animated Logo -->
-        <img src="/logo.webp" alt="JGOLD SIGNATURES" style="height:64px;width:auto;max-width:220px;object-fit:contain;margin-bottom:36px;filter:drop-shadow(0 0 10px rgba(223,178,108,0.08));animation:logo-pulse 2.2s ease-in-out infinite;" />
-        
-        <!-- Premium Circular Glowing Spinner -->
-        <div class="premium-spinner"></div>
+    <!-- Inline page skeleton loading state -->
+    <div style="position:fixed;top:0;left:0;right:0;bottom:0;background:#ffffff;z-index:9999;display:flex;flex-direction:column;font-family:sans-serif;" id="skeleton-loader">
+      <!-- Shimmering Header -->
+      <div style="height:72px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;">
+        <div style="width:140px;height:24px;border-radius:4px;background:#f1f5f9;position:relative;overflow:hidden;" class="shimmer"></div>
+        <div style="display:flex;gap:24px;">
+          <div style="width:60px;height:14px;border-radius:2px;background:#f1f5f9;position:relative;overflow:hidden;" class="shimmer"></div>
+          <div style="width:60px;height:14px;border-radius:2px;background:#f1f5f9;position:relative;overflow:hidden;" class="shimmer"></div>
+          <div style="width:60px;height:14px;border-radius:2px;background:#f1f5f9;position:relative;overflow:hidden;" class="shimmer"></div>
+        </div>
+      </div>
+      <!-- Shimmering Hero -->
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 32px;max-width:800px;margin:0 auto;width:100%;gap:20px;">
+        <div style="width:120px;height:14px;border-radius:2px;background:#f1f5f9;position:relative;overflow:hidden;" class="shimmer"></div>
+        <div style="width:90%;height:44px;border-radius:6px;background:#f1f5f9;position:relative;overflow:hidden;" class="shimmer"></div>
+        <div style="width:70%;height:20px;border-radius:4px;background:#f1f5f9;position:relative;overflow:hidden;" class="shimmer"></div>
+        <div style="width:100%;height:140px;border-radius:12px;background:#f1f5f9;position:relative;overflow:hidden;" class="shimmer"></div>
       </div>
       <style>
-        .premium-spinner {
-          width: 32px;
-          height: 32px;
-          border: 3px solid rgba(223, 178, 108, 0.06);
-          border-top-color: #dfb26c;
-          border-right-color: #966f33;
-          border-radius: 50%;
-          animation: spin-loader 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        .shimmer::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          transform: translateX(-100%);
+          background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.4) 20%,
+            rgba(255, 255, 255, 0.6) 60%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          animation: shimmer-anim 1.5s infinite;
+          content: '';
         }
-        @keyframes spin-loader {
-          to { transform: rotate(360deg); }
-        }
-        @keyframes logo-pulse {
-          0%, 100% { transform: scale(1); opacity: 0.85; filter: drop-shadow(0 0 8px rgba(223,178,108,0.06)); }
-          50% { transform: scale(1.05); opacity: 1; filter: drop-shadow(0 0 16px rgba(223,178,108,0.22)); }
-        }
-        @keyframes ambient-glow {
-          0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
-          50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+        @keyframes shimmer-anim {
+          100% {
+            transform: translateX(100%);
+          }
         }
       </style>
     </div>

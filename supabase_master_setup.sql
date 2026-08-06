@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════════════════════
--- JGOLD SIGNATURES — COMPLETE SUPABASE DATABASE SETUP & SCHEMAS
+-- SAINT GLOBAL SOLAR — COMPLETE SUPABASE DATABASE SETUP & SCHEMAS
 -- Run this ENTIRE script in your Supabase Dashboard → SQL Editor (idempotent).
 -- ═══════════════════════════════════════════════════════════════════════════
 
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS public.courses (
   certificate_enabled BOOLEAN DEFAULT TRUE,
   completion_threshold INTEGER DEFAULT 80,
   total_duration      TEXT,
-  instructor          TEXT DEFAULT 'JGOLD Stylist',
+  instructor          TEXT DEFAULT 'Solar Expert',
   created_at          TIMESTAMPTZ DEFAULT NOW(),
   updated_at          TIMESTAMPTZ DEFAULT NOW()
 );
@@ -762,9 +762,9 @@ DROP POLICY IF EXISTS "wishlist_self" ON public.wishlist;
 CREATE POLICY "wishlist_self" ON public.wishlist FOR ALL USING (user_id = auth.uid());
 
 
--- ─── 7. JGOLD BRAND SEED DATA ────────────────────────────────────────────────
+-- ─── 7. SAINT GLOBAL SOLAR BRAND SEED DATA ────────────────────────────────────
 INSERT INTO public.settings (id, value) VALUES
-  ('site_config', '{"platform_name":"JGOLD SIGNATURES","support_email":"admin@jgoldsignatures.com.ng","refund_days":7}'),
+  ('site_config', '{"platform_name":"SAINT GLOBAL SOLAR","support_email":"info@saintglobalsolar.com","refund_days":7}'),
   ('certificate_config', '{"completion_threshold":80,"template":"default"}'),
   ('affiliate_config', '{
     "enabled": true,
@@ -784,7 +784,7 @@ DO $$
 DECLARE
   admin_id UUID := 'd0d93708-3cb7-4d7a-8fcd-1a89c8a98b47';
 BEGIN
-  IF NOT EXISTS (SELECT 1 FROM auth.users WHERE email = 'admin@jgoldsignatures.com.ng') THEN
+  IF NOT EXISTS (SELECT 1 FROM auth.users WHERE email = 'admin@saintglobalsolar.com') THEN
     INSERT INTO auth.users (
       instance_id,
       id,
@@ -808,13 +808,13 @@ BEGIN
       admin_id,
       'authenticated',
       'authenticated',
-      'admin@jgoldsignatures.com.ng',
+      'admin@saintglobalsolar.com',
       extensions.crypt('password123', extensions.gen_salt('bf', 10)),
       now(),
       now(),
       now(),
       '{"provider": "email", "providers": ["email"]}',
-      '{"full_name": "JGOLD Administrator"}',
+      '{"full_name": "SAINT GLOBAL SOLAR Administrator"}',
       now(),
       now(),
       '',
@@ -823,7 +823,7 @@ BEGIN
       ''
     );
   ELSE
-    SELECT id INTO admin_id FROM auth.users WHERE email = 'admin@jgoldsignatures.com.ng';
+    SELECT id INTO admin_id FROM auth.users WHERE email = 'admin@saintglobalsolar.com';
   END IF;
 
   IF NOT EXISTS (SELECT 1 FROM auth.identities WHERE user_id = admin_id) THEN
@@ -840,7 +840,7 @@ BEGIN
       admin_id,
       admin_id::text,
       admin_id,
-      format('{"sub":"%s","email":"%s"}', admin_id::text, 'admin@jgoldsignatures.com.ng')::jsonb,
+      format('{"sub":"%s","email":"%s"}', admin_id::text, 'admin@saintglobalsolar.com')::jsonb,
       'email',
       now(),
       now(),
@@ -849,8 +849,8 @@ BEGIN
   END IF;
 
   INSERT INTO public.profiles (id, email, full_name, role)
-  VALUES (admin_id, 'admin@jgoldsignatures.com.ng', 'JGOLD Administrator', 'admin')
+  VALUES (admin_id, 'admin@saintglobalsolar.com', 'SAINT GLOBAL SOLAR Administrator', 'admin')
   ON CONFLICT (id) DO UPDATE SET role = 'admin';
 
-  UPDATE public.profiles SET role = 'admin' WHERE email = 'admin@jgoldsignatures.com.ng';
+  UPDATE public.profiles SET role = 'admin' WHERE email = 'admin@saintglobalsolar.com';
 END $$;

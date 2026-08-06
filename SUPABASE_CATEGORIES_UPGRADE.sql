@@ -1,5 +1,5 @@
 -- ============================================================================
--- JGOLD SIGNATURES - CATEGORIES & SUBCATEGORIES DATABASE UPGRADE
+-- SAINT GLOBAL SOLAR - CATEGORIES & SUBCATEGORIES DATABASE UPGRADE
 -- ============================================================================
 -- Copy and run this script inside your Supabase Dashboard SQL Editor
 -- (https://supabase.com/dashboard/project/figbzrnlgyrjkzxjwctj/sql/new)
