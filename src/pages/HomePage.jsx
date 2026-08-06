@@ -253,8 +253,8 @@ export default function HomePage() {
           
           {/* Left Collage Column with Real Solar Images */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', position: 'relative' }} className="about-collage-grid">
-            <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 12px 32px rgba(0,0,0,0.08)' }}>
-              <img src="/solar_install_1.jpg" alt="SAINT GLOBAL SOLAR installation panels" style={{ width: '100%', height: '340px', objectFit: 'cover', display: 'block' }} />
+            <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 12px 32px rgba(0,0,0,0.08)', height: '300px' }}>
+              <img src="/solar_install_1.jpg" alt="SAINT GLOBAL SOLAR installation panels" style={{ width: '100%', height: '112%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 12px 32px rgba(0,0,0,0.08)', marginTop: '40px' }}>
               <img src="/solar_install_2.jpg" alt="SAINT GLOBAL SOLAR hybrid inverter backup battery" style={{ width: '100%', height: '340px', objectFit: 'cover', display: 'block' }} />
@@ -518,7 +518,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── STATS & CALL TO ACTION SECTION (Bright Clean Background) ─── */}
-      <section style={{ background: 'var(--gold-d)', color: '#ffffff', padding: '80px 24px', width: '100%', maxWidth: '100%', borderTop: 'none', borderBottom: 'none' }}>
+      <section style={{ background: 'var(--gold)', color: '#ffffff', padding: '80px 24px', width: '100%', maxWidth: '100%', borderTop: 'none', borderBottom: 'none' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: '48px', alignItems: 'center' }} className="cta-wrapper">
           
           {/* Left Stats Grid */}

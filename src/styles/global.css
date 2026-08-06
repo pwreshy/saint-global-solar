@@ -42,9 +42,9 @@
   --n600: #4B5563; --n500: #6B7280; --n400: #9CA3AF;
   --n300: #D1D5DB; --n200: #E5E7EB; --n100: #F3F4F6; --n50: #F9FAFB;
   /* Type */
-  --font: 'Inter', sans-serif;
-  --font-heading: 'Asimov', sans-serif;
-  --font-sub: 'FrankoSub', 'Inter', sans-serif;
+  --font: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-sub: 'Plus Jakarta Sans', sans-serif;
   /* Radius */
   --r-sm: 8px; --r: 12px; --r-lg: 18px; --r-xl: 24px; --r-2xl: 32px;
   /* Shadows */

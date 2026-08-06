@@ -321,7 +321,7 @@ export default function LandingPageRenderer() {
       
       {/* BRAND BANNER LOGO */}
       <div style={{ background: '#0f0d0a', padding: '24px 20px', textAlign: 'center', borderBottom: '3px solid var(--gold)' }}>
-        <img src="/logo_white.png" alt="SAINT GLOBAL SOLAR" style={{ height: 50, width: 'auto', display: 'block', margin: '0 auto', filter: 'brightness(0) invert(1)' }} />
+        <img src="/logo_white.png" alt="SAINT GLOBAL SOLAR" style={{ height: 50, width: 'auto', display: 'block', margin: '0 auto' }} />
       </div>
 
       <main style={{ maxWidth: 840, margin: '0 auto', padding: isMobile ? '24px 12px 80px' : '40px 16px 80px' }}>

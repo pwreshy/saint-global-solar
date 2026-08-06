@@ -2629,7 +2629,7 @@ export default function AdminDashboard() {
       <div style={{ padding: sidebarCollapsed ? '0 12px' : '0 20px', marginBottom: 28, overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: sidebarCollapsed ? 'center' : 'flex-start' }}>
           <img 
-            src="/logo.webp" 
+            src="/logo_white.png" 
             alt="Logo" 
             style={{ 
               height: sidebarCollapsed ? 28 : 40,
@@ -2639,8 +2639,7 @@ export default function AdminDashboard() {
               objectPosition: 'left center',
               flexShrink: 0,
               transition: 'all 0.3s ease',
-              display: 'block',
-              filter: 'brightness(0) invert(1)'
+              display: 'block'
             }} 
           />
         </div>
@@ -2669,9 +2668,9 @@ export default function AdminDashboard() {
                   style={{
                     width: '100%',
                     border: 'none',
-                    background: isParentActive ? '#143e26' : 'transparent',
+                    background: isParentActive ? 'var(--gold)' : 'transparent',
                     padding: '10px 14px',
-                    color: isParentActive ? '#fff' : '#a7bdae',
+                    color: isParentActive ? '#fff' : '#94a3b8',
                     cursor: 'pointer',
                     fontWeight: 500,
                     borderRadius: 6,
@@ -2714,10 +2713,10 @@ export default function AdminDashboard() {
                   title={sidebarCollapsed ? t.name : undefined}
                   style={{
                     padding: '10px 14px',
-                    color: location.pathname === t.path ? '#fff' : '#a7bdae',
+                    color: location.pathname === t.path ? '#fff' : '#94a3b8',
                     textDecoration: 'none',
                     fontWeight: 500,
-                    background: location.pathname === t.path ? '#143e26' : 'transparent',
+                    background: location.pathname === t.path ? 'var(--gold)' : 'transparent',
                     borderRadius: 6,
                     display: 'flex',
                     alignItems: 'center',
@@ -2741,7 +2740,7 @@ export default function AdminDashboard() {
                   flexDirection: 'column', 
                   gap: 2, 
                   marginLeft: 26, 
-                  borderLeft: '1px solid #1a4d30', 
+                  borderLeft: '1px solid rgba(249,115,22,0.3)', 
                   paddingLeft: 12,
                   marginTop: 2,
                   marginBottom: 4
@@ -2754,7 +2753,7 @@ export default function AdminDashboard() {
                         to={sub.path}
                         style={{
                           padding: '6px 12px',
-                          color: isSubActive ? '#fff' : '#a7bdae',
+                          color: isSubActive ? '#fff' : '#94a3b8',
                           textDecoration: 'none',
                           fontSize: 12.5,
                           fontWeight: 500,
