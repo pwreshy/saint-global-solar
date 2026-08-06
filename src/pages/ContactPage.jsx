@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { sendContactFormSubmitted } from '../lib/emailService';
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -41,33 +42,24 @@ export default function ContactPage() {
         setIsSubmitting(true);
         try {
             const honeypot = document.getElementById('website_verify')?.value || '';
-            const response = await fetch('/contact.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    subject: formData.subject,
-                    message: formData.message,
-                    website_verify: honeypot
-                })
-            });
-            const result = await response.json();
-            if (response.ok && result.success) {
+            if (honeypot.trim()) {
+                // Silently drop spam submissions
                 setSubmitStatus('success');
-            } else {
-                setErrors({ submit: result.error || 'Unable to send message. Please try again.' });
+                setIsSubmitting(false);
+                return;
             }
+
+            await sendContactFormSubmitted({
+                name: formData.name,
+                email: formData.email,
+                subject: formData.subject,
+                message: formData.message
+            });
+
+            setSubmitStatus('success');
         } catch (err) {
             console.error('[ContactPage] Submission failed:', err);
-            // Local developer mode fallback simulation
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                setSubmitStatus('success');
-            } else {
-                setErrors({ submit: 'Unable to connect to the mail server. Please email directly or try again later.' });
-            }
+            setErrors({ submit: 'Unable to connect to the mail server. Please email directly or try again later.' });
         } finally {
             setIsSubmitting(false);
         }

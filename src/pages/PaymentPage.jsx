@@ -8,6 +8,7 @@ import { useCurrency } from '../context/CurrencyContext'
 import OrderBump from '../components/OrderBump'
 import { useAffiliate } from '../hooks/useAffiliate'
 import { sendOrderConfirmed, sendBankTransferPending, sendCodOrderPlaced } from '../lib/emailService'
+import { compressImage } from '../lib/imageCompressor'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SHOPIFY-STYLE FIELD COMPONENT
@@ -498,12 +499,13 @@ export default function PaymentPage() {
     setReceiptName(file.name)
 
     try {
-      const fileExt = file.name.split('.').pop()
+      const compressedFile = await compressImage(file)
+      const fileExt = compressedFile.name.split('.').pop()
       const fileName = `receipt-${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`
       
       const { data, error } = await supabase.storage
         .from('payment-receipts')
-        .upload(fileName, file)
+        .upload(fileName, compressedFile)
 
       if (error) {
         console.warn('[PaymentPage] bucket upload failed, using base64 fallback:', error.message)

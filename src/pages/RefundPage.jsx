@@ -30,7 +30,7 @@ export default function RefundPage() {
           boxShadow: '0 4px 12px rgba(15, 23, 42, 0.03)'
         }} className="policy-card">
           <p style={{ fontSize: '16px', lineHeight: '1.75', color: '#475569', marginTop: 0, marginBottom: '32px' }}>
-            At <strong>SAINT GLOBAL SOLAR</strong>, we take pride in designing and handcrafting premium footwear and accessories. We operate a clear commercial policy to assist our clients with size replacements and returns.
+            At <strong>SAINT GLOBAL SOLAR</strong>, we take pride in distributing and installing premium solar equipment and energy accessories. We operate a clear commercial policy to assist our clients with product replacements and returns.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
@@ -49,7 +49,7 @@ export default function RefundPage() {
                 fontSize: '14px',
                 fontWeight: 600
               }}>
-                Please ensure you try on shoes on a carpeted surface to avoid sole marks before verifying the fit.
+                Please ensure you inspect solar equipment upon arrival before proceeding with installation or opening seal packaging.
               </div>
             </div>
 

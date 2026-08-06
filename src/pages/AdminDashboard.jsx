@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import { compressImage } from '../lib/imageCompressor'
 import { useAuth } from '../context/AuthContext'
 import { usePersistedState } from '../hooks/usePersistedState'
 import AdminCourses from './AdminCourses'
@@ -937,13 +938,14 @@ function AdminProducts({ featureFlags }) {
     try {
       const uploadedUrls = []
       for (const file of files) {
-        const fileExt = file.name.split('.').pop()
+        const compressedFile = await compressImage(file)
+        const fileExt = compressedFile.name.split('.').pop()
         const fileName = `${Math.random().toString(36).substring(2, 10)}.${fileExt}`
         const filePath = `products/${fileName}`
 
         const { error: uploadError } = await supabase.storage
           .from('products')
-          .upload(filePath, file)
+          .upload(filePath, compressedFile)
 
         if (uploadError) throw uploadError
 

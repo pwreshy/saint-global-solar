@@ -178,9 +178,12 @@ export default function Header() {
   return (
     <>
       <header className="global-header">
-        <Link to={location.pathname.startsWith('/admin') ? '/admin' : '/'} className="brand-link" style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-          <img src="/logo_black.png" alt={localStorage.getItem('brandName') || 'SAINT GLOBAL SOLAR'} style={{ height: 60, width: 'auto', maxWidth: 280, objectFit: 'contain', objectPosition: 'left center', display: 'block', flexShrink: 0 }} />
+        <Link to={location.pathname.startsWith('/admin') ? '/admin' : '/'} className="brand-link header-logo-container" style={{ textDecoration: 'none' }}>
+          <div style={{ transition: 'transform 0.3s ease-in-out', display: 'flex', alignItems: 'center' }} onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
+            <img className="header-logo-img" src="/logo_black.png" alt={localStorage.getItem('brandName') || 'SAINT GLOBAL SOLAR'} />
+          </div>
         </Link>
+        <div className="header-logo-spacer" />
 
         <div className="header-search-wrapper" ref={dropdownRef} style={{ position: 'relative', flex: 1, maxWidth: '440px' }}>
           <div className="header-search-container" style={{ margin: 0, width: '100%', maxWidth: 'none' }}>
@@ -856,6 +859,69 @@ export default function Header() {
           background: var(--brand-hover);
           transform: translateY(-1px);
           box-shadow: 0 6px 20px rgba(13,46,26,0.3);
+        }
+        
+        /* ─── HANGING Brand Logo Styling ─── */
+        .header-logo-container {
+          position: absolute !important;
+          top: 6px !important;
+          left: 32px !important;
+          zIndex: 1050 !important;
+          display: flex !important;
+          align-items: center !important;
+          height: auto !important;
+          pointer-events: auto !important;
+        }
+        .header-logo-img {
+          height: 84px !important;
+          width: auto !important;
+          max-width: 280px !important;
+          object-fit: contain !important;
+          display: block !important;
+          filter: drop-shadow(0 4px 8px rgba(11, 15, 25, 0.12)) !important;
+        }
+        .header-logo-spacer {
+          width: 220px !important;
+          flex-shrink: 0 !important;
+        }
+        
+        @media (max-width: 991px) {
+          .header-logo-container {
+            left: 20px !important;
+          }
+          .header-logo-img {
+            height: 72px !important;
+            max-width: 220px !important;
+          }
+          .header-logo-spacer {
+            width: 160px !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .header-logo-container {
+            top: 4px !important;
+            left: 12px !important;
+          }
+          .header-logo-img {
+            height: 60px !important;
+            max-width: 170px !important;
+          }
+          .header-logo-spacer {
+            width: 120px !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .header-logo-container {
+            top: 4px !important;
+            left: 8px !important;
+          }
+          .header-logo-img {
+            height: 50px !important;
+            max-width: 130px !important;
+          }
+          .header-logo-spacer {
+            width: 90px !important;
+          }
         }
       `}} />
     </>

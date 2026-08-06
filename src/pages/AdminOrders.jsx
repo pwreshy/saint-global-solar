@@ -698,19 +698,44 @@ export default function AdminOrders() {
   const loadData = useCallback(async () => {
     setLoading(true)
     try {
-      const [{ data: ords }, { data: prods }] = await Promise.all([
-        supabase.from('orders').select(`
+      let ordsRes = await supabase.from('orders').select(`
+        id, reference, customer_email, customer_name, customer_phone,
+        amount, currency, status, payment_method, product_id, created_at,
+        shipping_street, shipping_city, shipping_state, shipping_zip,
+        delivery_fee, bank_receipt_url, shipping_status, tracking_number,
+        products ( id, title, type )
+      `).order('created_at', { ascending: false })
+
+      // ── MIGRATION FALLBACK ──
+      // If shipping_status or tracking_number columns don't exist in the DB,
+      // fallback to the basic query so the dashboard still loads orders.
+      if (ordsRes.error && ordsRes.error.message.toLowerCase().includes('column') && ordsRes.error.message.toLowerCase().includes('exist')) {
+        console.warn('[AdminOrders] Missing shipping_status or tracking_number columns, falling back to basic orders query...');
+        ordsRes = await supabase.from('orders').select(`
           id, reference, customer_email, customer_name, customer_phone,
           amount, currency, status, payment_method, product_id, created_at,
           shipping_street, shipping_city, shipping_state, shipping_zip,
           delivery_fee, bank_receipt_url,
           products ( id, title, type )
-        `).order('created_at', { ascending: false }),
-        supabase.from('products').select('id, title, price, type'),
-      ])
-      if (ords)  setOrders(ords)
-      if (prods) setProducts(prods)
+        `).order('created_at', { ascending: false })
+      }
+
+      const { data: prods, error: prodsErr } = await supabase.from('products').select('id, title, price, type')
+
+      if (ordsRes.error) {
+        console.error('[AdminOrders] Error loading orders:', ordsRes.error)
+        showToast(`Failed to load orders: ${ordsRes.error.message}`, 'error')
+      } else if (ordsRes.data) {
+        setOrders(ordsRes.data)
+      }
+
+      if (prodsErr) {
+        console.error('[AdminOrders] Error loading products:', prodsErr)
+      } else if (prods) {
+        setProducts(prods)
+      }
     } catch (err) {
+      console.error('[AdminOrders] Exception in loadData:', err)
       showToast('Failed to load orders from database', 'error')
     } finally {
       setLoading(false)

@@ -23,7 +23,7 @@ export default function LandingPageRenderer() {
   // Selected Items State
   // Format: { [id_number]: { product, sizes: ['42', '43'] } }
   const [selectedItems, setSelectedItems] = useState({})
-  // Quantities for each selected shoe-size combination
+  // Quantities for each selected product-variant combination
   // Format: { "SGS-101-42": 1 }
   const [itemQuantities, setItemQuantities] = useState({})
 
@@ -156,7 +156,7 @@ export default function LandingPageRenderer() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (selectedList.length === 0) {
-      alert('Please select at least one shoe design and available size from the catalog before ordering.')
+      alert('Please select at least one product design/option from the catalog before ordering.')
       return
     }
 
@@ -171,7 +171,7 @@ export default function LandingPageRenderer() {
     
     // Format list of items for payload
     const itemsDescription = selectedList.map(item => 
-      `${item.id_number} (Size: ${item.size} x ${item.quantity} pair${item.quantity > 1 ? 's' : ''})`
+      `${item.id_number} (Option: ${item.size} x ${item.quantity} unit${item.quantity > 1 ? 's' : ''})`
     ).join(', ')
 
     const emailPayload = {
@@ -235,7 +235,7 @@ export default function LandingPageRenderer() {
       // 3. Format WhatsApp checkout text & redirect
       let itemsWaText = ''
       selectedList.forEach(item => {
-        itemsWaText += `- *Design:* ${item.id_number}\n- *Size:* ${item.size}\n- *Quantity:* ${item.quantity} pair${item.quantity > 1 ? 's' : ''}\n- *Subtotal:* ₦${Number(item.price * item.quantity).toLocaleString()}\n\n`
+        itemsWaText += `- *Design/Option:* ${item.id_number}\n- *Option/Size:* ${item.size}\n- *Quantity:* ${item.quantity} unit${item.quantity > 1 ? 's' : ''}\n- *Subtotal:* ₦${Number(item.price * item.quantity).toLocaleString()}\n\n`
       })
 
       const waText = `Hi SAINT GLOBAL SOLAR,\n\nI just placed an order on your Landing Page (*${pageData.title}*):\n\n*Order Details:*\n${itemsWaText}*Total Amount:* ₦${grandTotal.toLocaleString()}\n*Payment Method:* ${paymentMethod === 'cash_on_delivery' ? 'Cash on Delivery' : 'Bank Transfer'}\n\n*Customer Shipping Info:*\n- *Name:* ${name}\n- *Email:* ${email}\n- *Phone:* ${phone}\n- *Delivery Address:* ${address}, ${state} State\n${notes ? `- *Notes:* ${notes}\n` : ''}\n- *Ref:* #${orderRef}`
@@ -370,7 +370,7 @@ export default function LandingPageRenderer() {
         {/* INSTRUCTIONS BANNER */}
         <div style={{ background: '#ffffff', border: '1px solid #e5e7eb', borderRadius: '12px', padding: '16px 20px', marginBottom: 32, textAlign: 'center' }}>
           <p style={{ margin: 0, fontSize: '14px', color: '#4b5563', lineHeight: 1.5, fontWeight: 500 }}>
-            Sizes available for these Shoes are From 40 - 46. Please select your preferred size box directly on the design card. You can also select multiple boxes if you would like to order more than one size or design.
+            Options/sizes available for these products are listed below. Please select your preferred variant box directly on the product card. You can also select multiple boxes if you would like to order more than one.
           </p>
         </div>
 
@@ -631,7 +631,7 @@ export default function LandingPageRenderer() {
                 </div>
               ) : (
                 <div style={{ padding: '24px 16px', background: '#f9fafb', border: '1px dashed #cbd5e1', borderRadius: '10px', textAlign: 'center', marginBottom: 28, color: '#6b7280', fontSize: '14px' }}>
-                  No footwear selected. Select a shoe size box on the catalog cards above to begin your order.
+                  No product selected. Select a product option/variant box on the catalog cards above to begin your order.
                 </div>
               )}
 
@@ -854,7 +854,7 @@ export default function LandingPageRenderer() {
           </p>
           <p style={{ margin: '0 0 16px', color: '#6b7280' }}>
             This site is not affiliated with Facebook, Google, or Meta in any way. 
-            Results and footwear styles mentioned on this page represent high-ticket luxury craftsmanship; individual experiences and fits will vary. 
+            Results and product options mentioned on this page represent high-quality craftsmanship; individual experiences will vary. 
             Verification and order booking are 100% free with no hidden charges.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', borderTop: '1px solid #1f2937', paddingTop: '16px' }}>

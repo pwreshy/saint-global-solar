@@ -390,8 +390,8 @@ function emailOrderDelivered(d: Record<string, string>) {
       </div>
 
       <div style="background:#f8fafc;border-radius:12px;padding:20px 24px;margin-bottom:24px;text-align:center;">
-        <p style="margin:0 0 8px;font-size:14px;font-weight:700;color:${BRAND.textDark};">Shop Luxury Footwear</p>
-        <p style="margin:0;font-size:13px;color:${BRAND.textMid};">Explore our full range of premium handcrafted leather footwear and accessories.</p>
+        <p style="margin:0 0 8px;font-size:14px;font-weight:700;color:${BRAND.textDark};">Shop Solar Products</p>
+        <p style="margin:0;font-size:13px;color:${BRAND.textMid};">Explore our full range of premium solar panels, hybrid inverters, backup batteries, and solar accessories.</p>
         <div style="margin-top:16px;">
           ${ctaButton("Browse Products →", `${STORE_URL}/products`)}
         </div>
@@ -419,7 +419,7 @@ function emailWelcome(d: Record<string, string>) {
         </div>
         <h1 style="margin:0 0 8px;font-size:28px;font-weight:900;color:${BRAND.primary};">Welcome to SAINT GLOBAL SOLAR!</h1>
         <p style="margin:0;font-size:15px;color:${BRAND.textMid};line-height:1.6;">
-          Hello ${d.name?.split(" ")[0] || "there"}, your account is ready. You now have access to premium luxury footwear and clothing accessories.
+          Hello ${d.name?.split(" ")[0] || "there"}, your account is ready. You now have access to premium solar energy solutions and high-efficiency backup systems.
         </p>
       </div>
 
@@ -431,8 +431,8 @@ function emailWelcome(d: Record<string, string>) {
                 <tr>
                   <td width="48" style="vertical-align:top;padding-top:4px;font-size:24px;">🛒</td>
                   <td style="vertical-align:top;padding-left:12px;">
-                    <p style="margin:0 0 4px;font-size:14px;font-weight:700;color:${BRAND.primary};">Shop Luxury Footwear</p>
-                    <p style="margin:0;font-size:13px;color:${BRAND.textMid};">Browse our curated selection of exquisite shoes and accessories.</p>
+                    <p style="margin:0 0 4px;font-size:14px;font-weight:700;color:${BRAND.primary};">Shop Solar Products</p>
+                    <p style="margin:0;font-size:13px;color:${BRAND.textMid};">Browse our curated selection of premium solar systems, inverters, and accessories.</p>
                   </td>
                 </tr>
               </table>
@@ -469,7 +469,7 @@ function emailWelcome(d: Record<string, string>) {
       </div>
     </td>
   </tr>`
-  return baseTemplate(content, `Welcome to SAINT GLOBAL SOLAR! Your account is ready. Start exploring luxury footwear and accessories.`)
+  return baseTemplate(content, `Welcome to SAINT GLOBAL SOLAR! Your account is ready. Start exploring premium solar energy solutions and accessories.`)
 }
 
 // 7. ADMIN NEW ORDER NOTIFICATION
@@ -542,6 +542,71 @@ function emailCodOrder(d: Record<string, string>) {
   return baseTemplate(content, `Order Received (Cash on Delivery) — SAINT GLOBAL SOLAR Store`)
 }
 
+// 9. CONTACT MESSAGE (Admin alert)
+function emailContactMessage(d: Record<string, string>) {
+  const content = `
+  <tr>
+    <td style="padding:40px 40px 0;">
+      <div style="margin-bottom:32px;">
+        <h1 style="margin:0 0 8px;font-size:24px;font-weight:900;color:${BRAND.primary};">New Inquiry Received</h1>
+        <p style="margin:0;font-size:15px;color:${BRAND.textMid};">A customer has sent a message from the website contact form.</p>
+      </div>
+
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;">
+        <tr style="background:#f8fafc;">
+          <td style="padding:12px 20px;font-size:12px;font-weight:700;color:${BRAND.textLight};text-transform:uppercase;width:120px;">Name</td>
+          <td style="padding:12px 20px;font-size:13.5px;color:${BRAND.textDark};font-weight:600;">${d.name || "—"}</td>
+        </tr>
+        <tr>
+          <td style="padding:12px 20px;font-size:12px;font-weight:700;color:${BRAND.textLight};text-transform:uppercase;width:120px;">Email</td>
+          <td style="padding:12px 20px;font-size:13.5px;color:${BRAND.textDark};font-weight:600;"><a href="mailto:${d.email}" style="color:${BRAND.gold};text-decoration:none;">${d.email || "—"}</a></td>
+        </tr>
+        <tr style="background:#f8fafc;">
+          <td style="padding:12px 20px;font-size:12px;font-weight:700;color:${BRAND.textLight};text-transform:uppercase;width:120px;">Subject</td>
+          <td style="padding:12px 20px;font-size:13.5px;color:${BRAND.textDark};font-weight:600;">${d.subject || "—"}</td>
+        </tr>
+        <tr>
+          <td style="padding:12px 20px;font-size:12px;font-weight:700;color:${BRAND.textLight};text-transform:uppercase;vertical-align:top;width:120px;padding-top:16px;">Message</td>
+          <td style="padding:16px 20px;font-size:13.5px;color:${BRAND.textDark};line-height:1.6;white-space:pre-wrap;">${d.message || "—"}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  `
+  return baseTemplate(content, `New Website Message: ${d.subject || "No Subject"}`)
+}
+
+// 10. CONTACT AUTO REPLY (Customer confirmation)
+function emailContactAutoReply(d: Record<string, string>) {
+  const content = `
+  <tr>
+    <td style="padding:40px 40px 0;">
+      <div style="text-align:center;margin-bottom:32px;">
+        <div style="display:inline-flex;width:64px;height:64px;border-radius:50%;background:${BRAND.light};margin-bottom:16px;align-items:center;justify-content:center;">
+          <span style="font-size:32px;">✉️</span>
+        </div>
+        <h1 style="margin:0 0 8px;font-size:24px;font-weight:900;color:${BRAND.primary};">Message Received</h1>
+        <p style="margin:0;font-size:15px;color:${BRAND.textMid};">Hi ${d.name?.split(" ")[0] || "there"}, thank you for reaching out to SAINT GLOBAL SOLAR.</p>
+      </div>
+
+      <div style="background:#f8fafc;border-radius:12px;padding:20px 24px;margin-bottom:24px;border:1px solid #e2e8f0;line-height:1.6;color:${BRAND.textMid};font-size:14px;">
+        <p style="margin:0 0 12px;font-weight:700;color:${BRAND.textDark};">Summary of your message:</p>
+        <p style="margin:0 0 8px;"><strong>Subject:</strong> ${d.subject || "No Subject"}</p>
+        <p style="margin:0;font-style:italic;">"${d.message}"</p>
+      </div>
+
+      <div style="background:${BRAND.light};border-radius:12px;padding:20px 24px;margin-bottom:24px;border-left:4px solid ${BRAND.accent};">
+        <p style="margin:0;font-size:13.5px;color:${BRAND.textMid};line-height:1.6;">
+          Our technical engineering and customer support team has received your message and will review your request.
+          We typically respond within 12–24 business hours.
+        </p>
+      </div>
+    </td>
+  </tr>
+  `
+  return baseTemplate(content, `We've received your message — SAINT GLOBAL SOLAR`)
+}
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // ROUTE HANDLER
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -569,7 +634,7 @@ serve(async (req: Request) => {
       })
     }
 
-    type EmailType = "order_confirmed" | "bank_transfer" | "payment_verified" | "order_shipped" | "order_delivered" | "welcome" | "admin_new_order" | "cod_order_placed"
+    type EmailType = "order_confirmed" | "bank_transfer" | "payment_verified" | "order_shipped" | "order_delivered" | "welcome" | "admin_new_order" | "cod_order_placed" | "contact_message" | "contact_auto_reply"
 
     const emails: Record<EmailType, { subject: string; html: (d: Record<string, string>) => string }> = {
       order_confirmed:  { subject: "✅ Order Confirmed — SAINT GLOBAL SOLAR",             html: emailOrderConfirmed },
@@ -580,6 +645,8 @@ serve(async (req: Request) => {
       welcome:          { subject: "✨ Welcome to SAINT GLOBAL SOLAR — Your Account is Ready", html: emailWelcome },
       admin_new_order:  { subject: `🔔 New Order${data.name ? ` from ${data.name}` : ""} — SAINT GLOBAL SOLAR`, html: emailAdminNewOrder },
       cod_order_placed: { subject: "📦 Order Received (Cash on Delivery) — SAINT GLOBAL SOLAR",     html: emailCodOrder },
+      contact_message:  { subject: `📩 New Website Inquiry: ${data.subject || "No Subject"}`, html: emailContactMessage },
+      contact_auto_reply: { subject: "✉️ Message Received — SAINT GLOBAL SOLAR", html: emailContactAutoReply },
     }
 
     const emailConfig = emails[type as EmailType]
@@ -593,7 +660,7 @@ serve(async (req: Request) => {
     // Map "admin" to the ADMIN_EMAIL environment variable
     const recipients = to === "admin" ? [ADMIN_EMAIL] : (Array.isArray(to) ? to : [to])
 
-    const res = await fetch("https://api.resend.com/emails", {
+    let res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -608,7 +675,30 @@ serve(async (req: Request) => {
       }),
     })
 
-    const result = await res.json()
+    let result = await res.json()
+
+    // ── AUTOMATIC RESEND SANDBOX FALLBACK FOR UNVERIFIED DOMAINS ────────────────
+    // If the domain is unverified, Resend returns a 403 Forbidden.
+    // We catch this and send it from onboarding@resend.dev to the Admin Email
+    // so that the web checkout flow completes successfully and alerts the admin.
+    if (res.status === 403) {
+      console.warn("[send-email] Sending failed with 403 (Domain unverified). Falling back to onboarding@resend.dev to Admin Email...");
+      res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: "onboarding@resend.dev",
+          to: [ADMIN_EMAIL],
+          reply_to: ADMIN_EMAIL,
+          subject: `[Sandbox Mode] ${emailConfig.subject}`,
+          html: emailConfig.html(data as Record<string, string>),
+        }),
+      })
+      result = await res.json()
+    }
 
     if (!res.ok) {
       console.error("[send-email] Resend error:", result)

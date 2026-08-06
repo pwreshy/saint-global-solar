@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#0D3B2E"/>
-  <text x="16" y="22" font-family="Arial" font-weight="900" font-size="14" fill="#F5C518" text-anchor="middle">₦</text>
+  <rect width="32" height="32" rx="8" fill="#0b0f19"/>
+  <!-- Elegant golden sun representing Solar Energy -->
+  <circle cx="16" cy="16" r="6" fill="#f97316"/>
+  <path d="M16 4v3.5M16 24.5v3.5M4 16h3.5M24.5 16h3.5M7.5 7.5l2.5 2.5M22 22l2.5 2.5M24.5 7.5L22 10M10 22l-2.5 2.5" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
 </svg>

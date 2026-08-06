@@ -164,6 +164,23 @@ export async function sendWelcomeEmail(data: {
   await trigger('welcome', data.email, data)
 }
 
+/**
+ * Sent when a website contact form is submitted.
+ */
+export async function sendContactFormSubmitted(data: {
+  name: string
+  email: string
+  subject: string
+  message: string
+}) {
+  await Promise.all([
+    // Send auto reply to customer
+    trigger('contact_auto_reply', data.email, data),
+    // Send inquiry details to admin email (info@saintglobalsolar.com)
+    trigger('contact_message', 'admin', data),
+  ])
+}
+
 // ─── CONVENIENCE EXPORT ───────────────────────────────────────────────────────
 const emailService = {
   orderConfirmed:       sendOrderConfirmed,
@@ -172,6 +189,7 @@ const emailService = {
   orderShipped:         sendOrderShipped,
   orderDelivered:       sendOrderDelivered,
   welcome:              sendWelcomeEmail,
+  contactFormSubmitted: sendContactFormSubmitted,
 }
 
 export default emailService

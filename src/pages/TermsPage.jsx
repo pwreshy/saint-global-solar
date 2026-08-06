@@ -59,7 +59,7 @@ export default function TermsPage() {
             <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '24px' }}>
               <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#0f0d0a', margin: '0 0 12px' }}>4. Returns, Exchanges & Liability Limits</h2>
               <p style={{ fontSize: '15px', lineHeight: '1.7', color: '#475569', margin: 0 }}>
-                We accept equipment return/exchange requests within 7 days of delivery, provided the footwear or accessory is unworn, undamaged, and returned in its original packaging. SAINT GLOBAL SOLAR is not liable for delayed carrier transit times or buyer damages.
+                We accept equipment return/exchange requests within 7 days of delivery, provided the solar equipment or accessory is unused, undamaged, and returned in its original packaging. SAINT GLOBAL SOLAR is not liable for delayed carrier transit times or buyer damages.
               </p>
             </div>
 

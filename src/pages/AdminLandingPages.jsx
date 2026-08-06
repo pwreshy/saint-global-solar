@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
+import { compressImage } from '../lib/imageCompressor'
 
 export default function AdminLandingPages() {
   const [pages, setPages] = useState([])
@@ -182,13 +183,14 @@ export default function AdminLandingPages() {
     if (!file) return
     setUploadingIndex(index)
     try {
-      const fileExt = file.name.split('.').pop()
+      const compressedFile = await compressImage(file)
+      const fileExt = compressedFile.name.split('.').pop()
       const fileName = `${Math.random().toString(36).substring(2, 10)}.${fileExt}`
       const filePath = `landing/${fileName}`
 
       const { error: uploadError } = await supabase.storage
         .from('landing_pages')
-        .upload(filePath, file)
+        .upload(filePath, compressedFile)
 
       if (uploadError) throw uploadError
 

@@ -25,8 +25,10 @@ CREATE POLICY "Allow public read on categories" ON public.categories
 DROP POLICY IF EXISTS "Allow admin write on categories" ON public.categories;
 CREATE POLICY "Allow admin write on categories" ON public.categories
   FOR ALL USING (
-    (auth.jwt() ->> 'email') IN (
-      'nprecious.official@gmail.com' -- Add your admin email list here
+    auth.email() IN (
+      'nprecious.official@gmail.com',
+      'pwreshyofficial@gmail.com',
+      'admin@saintglobalsolar.com'
     )
     OR 
     EXISTS (
