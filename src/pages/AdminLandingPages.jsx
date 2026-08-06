@@ -103,20 +103,20 @@ export default function AdminLandingPages() {
     setSlug('')
     setProductCount(3)
     setFormProducts([
-      { id_number: 'SGS-101', image_url: '', price: '', colors: 'blue, red, brown', available_sizes: ['40', '41', '42', '43', '44', '45', '46'] },
-      { id_number: 'SGS-102', image_url: '', price: '', colors: 'black, white', available_sizes: ['40', '41', '42', '43', '44', '45', '46'] },
-      { id_number: 'SGS-103', image_url: '', price: '', colors: 'brown, tan', available_sizes: ['40', '41', '42', '43', '44', '45', '46'] }
+      { id_number: 'SGS-101', image_url: '', price: '', colors: 'Monocrystalline Blue', available_sizes: ['350W', '450W', '550W'] },
+      { id_number: 'SGS-102', image_url: '', price: '', colors: 'Lithium-Ion Black', available_sizes: ['100Ah', '150Ah', '200Ah'] },
+      { id_number: 'SGS-103', image_url: '', price: '', colors: 'Smart Inverter Grey', available_sizes: ['3kVA', '5kVA', '10kVA'] }
     ])
-    setHeadline('Handcrafted Luxury For The Modern Gentleman')
-    setSubheadline('Experience unmatched comfort and style with our premium bespoke collection, tailored to perfection.')
+    setHeadline('Premium Solar Solutions & Installation')
+    setSubheadline('Uninterrupted power supply for your home and office with our premium solar panels, inverter setups, and batteries.')
     setHighlights([
-      'Bespoke craftsmanship with 100% genuine calfskin leather',
-      'Ergonomic inner lining designed for all-day comfort',
-      'Durable Italian outsoles crafted for stability and longevity'
+      'Bespoke solar installation by certified engineers',
+      '24/7 technical support & premium warranty protection',
+      'High-capacity lithium batteries built for longevity'
     ])
     setShowDisclaimer(true)
     setDisclaimerText('Please only submit an order if you have the cash fully ready and will be available to receive the delivery in 2 to 5 days. Every delivery attempt costs our business money for logistics and verification. Time-wasters, window shoppers, and unserious orders are strictly prohibited.')
-    setUrgencyText('High Demand - Limited Quantities Left')
+    setUrgencyText('High Demand - Limited Systems Left')
     setIsEditing(false)
     setEditingPage(true)
   }
@@ -454,7 +454,7 @@ export default function AdminLandingPages() {
                 type="text"
                 value={headline}
                 onChange={e => setHeadline(e.target.value)}
-                placeholder="e.g. Handcrafted Luxury For The Modern Gentleman"
+                placeholder="e.g. Premium Solar Solutions & Installation"
                 style={{ ...inputStyle, marginBottom: 0 }}
                 required
               />
@@ -482,7 +482,7 @@ export default function AdminLandingPages() {
                       updated[hlIdx] = e.target.value
                       setHighlights(updated)
                     }}
-                    placeholder={`Highlight #${hlIdx + 1} (e.g. Bespoke craftsmanship with calfskin leather)`}
+                    placeholder={`Highlight #${hlIdx + 1} (e.g. 24/7 technical support & premium warranty)`}
                     style={{ ...inputStyle, marginBottom: 0 }}
                   />
                 ))}
