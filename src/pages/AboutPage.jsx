@@ -155,6 +155,23 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Showroom Showcase Banner */}
+      <section style={{ padding: '40px 24px', background: '#ffffff', textAlign: 'center' }}>
+        <div style={{ maxWidth: '850px', margin: '0 auto' }}>
+          <img 
+            src="/solar_about_banner.jpg" 
+            alt="SAINT GLOBAL SOLAR corporate showroom details and solar systems banner" 
+            style={{ 
+              width: '100%', 
+              height: 'auto', 
+              borderRadius: '12px', 
+              boxShadow: '0 10px 25px rgba(11, 15, 25, 0.05)',
+              display: 'block'
+            }} 
+          />
+        </div>
+      </section>
+
       {/* CAC Certificate Section */}
       <section style={{ padding: '80px 24px', background: '#ffffff', borderBottom: '1px solid #e2e8f0' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center' }} className="about-split-row">
